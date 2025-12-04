@@ -5,6 +5,12 @@ add_filter('upload_mimes', 'svg_upload_allow');
 add_action('wpcf7_before_send_mail', 'send_message_to_telegram');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 
+// ============================================
+// Include Custom Post Types
+// ============================================
+// Переконайся, що створив папку includes і поклав туди файл
+require_once get_template_directory() . '/includes/post-types.php';
+
 function enqueue_scripts_and_styles()
 {
 
@@ -27,6 +33,25 @@ function theme_setup()
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
 }
+
+// ============================================
+// ACF Options Page (Global Settings)
+// ============================================
+add_action('acf/init', function () {
+    if (function_exists('acf_add_options_page')) {
+        acf_add_options_page(array(
+            'page_title' => 'Налаштування сайту',
+            'menu_title' => 'Налаштування',
+            'menu_slug' => 'site-options',
+            'capability' => 'manage_options',
+            'redirect' => false,
+            'position' => 65,
+            'icon_url' => 'dashicons-admin-generic',
+            'update_button' => __('Зберегти налаштування', 'maxi-dent'),
+            'updated_message' => __('Налаштування оновлені', 'maxi-dent')
+        ));
+    }
+});
 
 function get_image($name)
 {
