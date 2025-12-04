@@ -5,19 +5,21 @@ add_filter('upload_mimes', 'svg_upload_allow');
 add_action('wpcf7_before_send_mail', 'send_message_to_telegram');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 
-function enqueue_scripts_and_styles(){
+function enqueue_scripts_and_styles()
+{
 
     wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/main.bundle.css'); // R
 
     wp_enqueue_script('main-js', get_template_directory_uri() . '/dist/js/main.bundle.js', array(), null, true);
     wp_localize_script('main-js', 'params', array(
-			'template_directory_url' => get_template_directory_uri(),
-			'ajax_url' => admin_url('admin-ajax.php'),
-			'page_template' => get_page_template_slug() ? get_page_template_slug() : ''
-		));
+        'template_directory_url' => get_template_directory_uri(),
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'page_template' => get_page_template_slug() ? get_page_template_slug() : ''
+    ));
 }
 
-function theme_setup(){
+function theme_setup()
+{
     show_admin_bar(false);
     register_nav_menu('menu-header', 'Main menu');
 
@@ -97,22 +99,38 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
 function getHomePageID()
 {
 
-	// Отримуємо ID стандартної головної сторінки
-	$default_home_id = get_option('page_on_front');
+    // Отримуємо ID стандартної головної сторінки
+    $default_home_id = get_option('page_on_front');
 
-	// Перевіряємо, чи встановлений Polylang і чи існують необхідні функції
-	if (function_exists('pll_current_language') && function_exists('pll_get_post')) {
-		// Визначаємо поточну мову
-		$current_lang = pll_current_language();
+    // Перевіряємо, чи встановлений Polylang і чи існують необхідні функції
+    if (function_exists('pll_current_language') && function_exists('pll_get_post')) {
+        // Визначаємо поточну мову
+        $current_lang = pll_current_language();
 
-		// Отримуємо ID перекладеної сторінки
-		$translated_home_id = pll_get_post($default_home_id, $current_lang);
+        // Отримуємо ID перекладеної сторінки
+        $translated_home_id = pll_get_post($default_home_id, $current_lang);
 
-		// Повертаємо перекладений ID, якщо він існує, інакше стандартний
-		return $translated_home_id ? $translated_home_id : $default_home_id;
-	}
+        // Повертаємо перекладений ID, якщо він існує, інакше стандартний
+        return $translated_home_id ? $translated_home_id : $default_home_id;
+    }
 
-	// Якщо Polylang не встановлений, повертаємо стандартний ID
-	return $default_home_id;
+    // Якщо Polylang не встановлений, повертаємо стандартний ID
+    return $default_home_id;
 }
 
+
+/*
+ * Вимкнення Gutenberg (блочного редактора)
+ */
+// Вимикає редактор блоків для постів та сторінок
+add_filter('use_block_editor_for_post', '__return_false');
+
+// Вимикає редактор блоків для віджетів (повертає старі віджети)
+add_filter('use_widgets_block_editor', '__return_false');
+
+// Опціонально: Вимкнути завантаження стилів Gutenberg на фронтенді (щоб сайт вантажився швидше)
+add_action('wp_enqueue_scripts', function () {
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+    wp_dequeue_style('global-styles');
+}, 100);
