@@ -22,3 +22,10 @@ main {
   gap: var(--_section-gap);
   grid-auto-rows: max-content;
 }
+
+body {
+  font-family: $font-family-base;
+  color: var(--color-text, #242424);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

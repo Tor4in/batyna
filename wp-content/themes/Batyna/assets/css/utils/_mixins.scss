@@ -38,7 +38,7 @@
       position: absolute;
     }
 
-    content: '';
+    content: "";
     @content;
   }
 }
@@ -53,7 +53,7 @@
       position: absolute;
     }
 
-    content: '';
+    content: "";
     @content;
   }
 }
@@ -68,19 +68,13 @@
   @if unitless($value) {
     // Якщо це просто число, вважаємо, що воно в px, і конвертуємо в rem
     @return $value * 1rem;
-  }
-
-  @else if unit($value)=='px' {
+  } @else if unit($value) == "px" {
     // Конвертуємо px в rem (1rem = 16px)
     @return math.div($value, 16px) * 1rem;
-  }
-
-  @else if unit($value)=='rem' {
+  } @else if unit($value) == "rem" {
     // Якщо вже в rem, повертаємо значення без змін
     @return $value;
-  }
-
-  @else {
+  } @else {
     @error "Одиниця #{$value} не підтримується. Використовуйте number, px або rem.";
   }
 }
@@ -92,7 +86,10 @@
   $minViewportWidth: convert-to-rem(375px);
   $maxViewportWidth: convert-to-rem(1440px);
 
-  $slope: math.div(($maxVal - $minVal), ($maxViewportWidth - $minViewportWidth)); // Використовуємо math.div
+  $slope: math.div(
+    ($maxVal - $minVal),
+    ($maxViewportWidth - $minViewportWidth)
+  ); // Використовуємо math.div
   $base: $minVal - ($slope * $minViewportWidth);
 
   @return clamp(#{$minVal}, calc(#{$base} + #{$slope * 100vw}), #{$maxVal});
@@ -100,7 +97,37 @@
 
 // Usage
 // .element {
-//   	font-size: Clamp(16px, 24px); 
-// or font-size: Clamp(1rem, 1.5rem); 
+//   	font-size: Clamp(16px, 24px);
+// or font-size: Clamp(1rem, 1.5rem);
 // or font-size: Clamp(16, 24); - 16rem to 24rem
 // }
+
+
+// Fonts
+@mixin typography($family, $weight, $size, $lh: normal, $ls: 0) {
+  font-family: $family;
+  font-weight: $weight;
+  @if type-of($size) == "list" and length($size) == 2 {
+    font-size: Clamp(nth($size, 1), nth($size, 2));
+  } @else {
+    font-size: convert-to-rem($size);
+  }
+  line-height: if(unitless($lh), $lh, convert-to-rem($lh));
+  letter-spacing: $ls;
+}
+
+// Mask for svg icons in button
+@mixin svg-mask($url, $width: 100%, $height: 100%) {
+  display: block;
+  width: $width;
+  height: $height;
+  background-color: currentColor;
+  -webkit-mask-image: url($url);
+  mask-image: url($url);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
