@@ -54,9 +54,15 @@ $fw-bold: 700;
     #ffffff 100%
   );
 
+  --gradient-doctor-card: linear-gradient(
+    100.97deg,
+    #edeef6 6.74%,
+    #cfd9e3 55.55%
+  );
+
   // --- Images ---
   --hero-bg-image: url("../images/hero-bg.webp");
-  
+
   // --- Shadows ---
   --shadow-header: 0px 17px 38px 0px rgba(0, 0, 0, 0.1),
     0px 69px 69px 0px rgba(0, 0, 0, 0.09),
@@ -69,4 +75,8 @@ $fw-bold: 700;
     0px 156px 94px 0px rgba(0, 0, 0, 0.05),
     0px 277px 111px 0px rgba(0, 0, 0, 0.01),
     0px 433px 121px 0px rgba(0, 0, 0, 0);
+
+  --shadow-glass-card: 0px 17px 38px 0px #0000001a, 0px 69px 69px 0px #00000017,
+    0px 156px 94px 0px #0000000d, 0px 277px 111px 0px #00000003,
+    0px 433px 121px 0px #00000000;
 }
