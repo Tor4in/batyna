@@ -63,9 +63,16 @@
 				?>
 
 				<div class="backdrop__actions">
-					<a href="<?php echo esc_url($btn_link); ?>" class="btn btn-quaternary">
-						<?php echo esc_html($btn_text); ?>
-					</a>
+					<?php
+					// Використовуємо Primary кнопку, але без іконки
+					get_template_part('templates/button', null, [
+						'text' => $btn_text,
+						'link' => $btn_link,
+						'type' => 'primary', 
+						'icon' => false,     
+						'class' => 'mobile-menu-btn'
+					]);
+					?>
 				</div>
 			</div>
 
