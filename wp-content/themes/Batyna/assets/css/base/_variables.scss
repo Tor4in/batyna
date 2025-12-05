@@ -9,30 +9,37 @@ $fw-bold: 700;
 
 // --- CSS Variables ---
 :root {
-  // Gaps
+  // --- Spacing & Layout ---
   --_section-gap: #{Clamp(3.75rem, 7.5rem)};
   --_section-offset: #{Clamp(0.5rem, 2.5rem)};
+  --header-height: 80px;
 
-  // Main Colors
+  // --- Colors: Brand ---
   --color-primary: #122248;
   --color-secondary: #5d7ca9;
+  --color-blue-accent: #3971c0;
+
+  // --- Colors: Neutrals ---
   --color-background: #f7f8ff;
-  --color-text: #242424;
-  --color-heading: #000000;
+  --color-bg-light: #e8eaf3;
   --color-white: #fff;
   --color-black: #000000;
+  --color-text: #242424;
+  --color-heading: #000000;
 
-  // Utility Colors
-  --color-white-70: #ffffffb2;
-  --color-white-50: #ffffff80;
-  --color-glass-bg: #ffffff4d; 
+  // --- Colors: Utility & UI ---
   --color-border: #e0e0e0;
   --color-border-grey: #a5a5a5;
+  --color-grey-silver: #b6b6b6;
   --color-grey-medium: #b6b0b0;
-  --color-blue-accent: #3971c0;
-  --color-bg-light: #e8eaf3;
 
-  // Gradients
+  // --- Colors: Transparencies & Overlays ---
+  --color-white-70: rgba(255, 255, 255, 0.7);
+  --color-white-50: rgba(255, 255, 255, 0.5);
+  --color-glass-bg: rgba(255, 255, 255, 0.3);
+  --color-overlay-dark: rgba(0, 0, 0, 0.32);
+
+  // --- Gradients ---
   --gradient-silver: linear-gradient(
     180deg,
     #f2f2f2 60.58%,
@@ -40,19 +47,27 @@ $fw-bold: 700;
     #ffffff 100%
   );
 
-  // Header Specific Gradient (Custom from design)
   --gradient-header-border: linear-gradient(
     180deg,
     #f2f2f2 0%,
     #818181 41.42%,
     #ffffff 100%
   );
-  
-  // Mobile Menu Background Image
-  --mobile-menu-bg-image: url('../images/menu-bg.jpg');
 
-  // Shadows
-  --shadow-header: 0px 17px 38px 0px #0000001a, 0px 69px 69px 0px #00000017,
-    0px 156px 94px 0px #0000000d, 0px 277px 111px 0px #00000003,
-    0px 433px 121px 0px #00000000;
+  // --- Images ---
+  --mobile-menu-bg-image: url("../images/menu-bg.jpg");
+  --hero-bg-image: url("../images/hero-bg.webp");
+  
+  // --- Shadows ---
+  --shadow-header: 0px 17px 38px 0px rgba(0, 0, 0, 0.1),
+    0px 69px 69px 0px rgba(0, 0, 0, 0.09),
+    0px 156px 94px 0px rgba(0, 0, 0, 0.05),
+    0px 277px 111px 0px rgba(0, 0, 0, 0.01),
+    0px 433px 121px 0px rgba(0, 0, 0, 0);
+
+  --shadow-deep: 0px 17px 38px 0px rgba(0, 0, 0, 0.1),
+    0px 69px 69px 0px rgba(0, 0, 0, 0.09),
+    0px 156px 94px 0px rgba(0, 0, 0, 0.05),
+    0px 277px 111px 0px rgba(0, 0, 0, 0.01),
+    0px 433px 121px 0px rgba(0, 0, 0, 0);
 }
