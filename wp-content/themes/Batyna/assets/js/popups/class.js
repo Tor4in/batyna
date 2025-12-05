@@ -7,6 +7,7 @@ export class Popup {
     if (!selector) return;
     this.selector = selector;
     this.element = document.querySelector(selector);
+
     if (this.element) {
       const closeButtonSelector = settings.closeButton || ".close-button";
       this.closeButton = this.element.querySelector(closeButtonSelector);
@@ -14,9 +15,15 @@ export class Popup {
       return console.error("Popup not found:", selector);
     }
 
-    this.canAvtion = true;
+    this.canAction = true;
+
+    // Button Selectors
     this.openButtonsSelector = settings.openButtons || "";
+    this.toggleButtonsSelector = settings.toggleButtons || "";
+
     this.openButtons = [];
+    this.toggleButtons = [];
+
     this.closeOnResize = settings.closeOnResize || false;
     this.on = settings.on || {};
     this.resizeTimer = null;
@@ -26,14 +33,19 @@ export class Popup {
   }
 
   init() {
+    // 1. Close Button (inside popup)
     if (this.closeButton) {
       this.closeButton.addEventListener("click", this.close.bind(this));
     }
+
+    // 2. Close on Backdrop Click
     this.element.addEventListener("click", (e) => {
       if (e.target == this.element) {
         this.close();
       }
     });
+
+    // 3. Open Buttons
     if (this.openButtonsSelector) {
       this.openButtons = Array.from(
         document.querySelectorAll(this.openButtonsSelector)
@@ -42,6 +54,18 @@ export class Popup {
         button.addEventListener("click", this.open.bind(this));
       });
     }
+
+    // 4. Toggle Buttons
+    if (this.toggleButtonsSelector) {
+      this.toggleButtons = Array.from(
+        document.querySelectorAll(this.toggleButtonsSelector)
+      );
+      this.toggleButtons.forEach((button) => {
+        button.addEventListener("click", this.toggle.bind(this));
+      });
+    }
+
+    // 5. Close on Resize
     if (this.closeOnResize) {
       window.addEventListener("resize", () => {
         if (!this.element.hasAttribute("open")) return;
@@ -52,6 +76,7 @@ export class Popup {
       });
     }
 
+    // Parse Animation Durations from CSS variables
     let openDuration = getProp(this.element, "--_open", 600);
     if (typeof openDuration === "string") {
       if (openDuration.endsWith("ms")) {
@@ -63,6 +88,7 @@ export class Popup {
       }
     }
     this.animations.open = openDuration;
+
     let closeDuration = getProp(this.element, "--_close", 600);
     if (typeof closeDuration === "string") {
       if (closeDuration.endsWith("ms")) {
@@ -72,55 +98,54 @@ export class Popup {
       }
     }
     this.animations.close = closeDuration;
-    console.info("Popup initialized:", this.selector);
-    if (this.on?.init) {
-      const initCallback =
-        typeof this.on.init === "function" ? this.on.init : () => {};
-      initCallback.call(this); // Виконуємо функцію з контекстом поточного об'єк
+
+    // Trigger Init Callback
+    if (typeof this.on.init === "function") {
+      this.on.init.call(this);
     }
   }
+
   open() {
-    if (!this.canAvtion) return;
-    console.info("Popup opened:", this.selector);
-    this.canAvtion = false;
+    if (!this.canAction) return;
+    if (this.element.hasAttribute("open")) return;
+
+    this.canAction = false;
     this.element.removeAttribute("close");
     this.element.setAttribute("open", "");
+
     setTimeout(() => {
-      this.canAvtion = true;
+      this.canAction = true;
     }, this.animations.open);
-    if (this.on?.open) {
-      const openCallback =
-        typeof this.on.open === "function" ? this.on.open : () => {};
-      openCallback.call(this); // Виконуємо функцію з контекстом поточного об'єкта
+
+    if (typeof this.on.open === "function") {
+      this.on.open.call(this);
     }
   }
+
   close() {
-    if (!this.canAvtion) return;
-    console.info("Popup closed:", this.selector);
-    this.canAvtion = false;
+    if (!this.canAction) return;
+    if (!this.element.hasAttribute("open")) return;
+
+    this.canAction = false;
     this.element.setAttribute("close", "");
     this.element.removeAttribute("open");
+
     setTimeout(() => {
-      this.canAvtion = true;
-    }, this.animations.open);
-    if (this.on?.close) {
-      const closeCallback =
-        typeof this.on.close === "function" ? this.on.close : () => {};
-      closeCallback.call(this); // Виконуємо функцію з контекстом поточного об'єкта
+      this.canAction = true;
+    }, this.animations.close || this.animations.open);
+
+    if (typeof this.on.close === "function") {
+      this.on.close.call(this);
     }
   }
+
   toggle() {
-    if (!this.canAvtion) return;
-    console.info("Popup toggled:", this.selector);
-    this.canAvtion = false;
+    if (!this.canAction) return;
+
     this.element.hasAttribute("open") ? this.close() : this.open();
-    setTimeout(() => {
-      this.canAvtion = true;
-    }, this.animations.open);
-    if (this.on?.toggle) {
-      const toggleCallback =
-        typeof this.on.toggle === "function" ? this.on.toggle : () => {};
-      toggleCallback.call(this); // Виконуємо функцію з контекстом поточного об'єкта
+
+    if (typeof this.on.toggle === "function") {
+      this.on.toggle.call(this);
     }
   }
 }

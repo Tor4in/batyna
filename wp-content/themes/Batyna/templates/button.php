@@ -3,17 +3,17 @@
  * Button Template Component
  */
 
-$text = $args['text'] ?? 'Button';
+$text = $args['text'] ?? '';
 $href = $args['link'] ?? ($args['href'] ?? '#');
 $type = $args['type'] ?? 'primary';
 $class_extra = $args['class'] ?? '';
 $icon = $args['icon'] ?? true;
 $target = $args['target'] ?? '_self';
-
+$custom_svg = $args['svg'] ?? null;
 $classes = 'btn btn-' . $type;
 
-// Add 'btn--no-icon' if icon is disabled (used for Secondary btn padding)
-if (!$icon) {
+// Add 'btn--no-icon' if icon is disabled
+if (!$icon && $type !== 'social' && $type !== 'icon') {
     $classes .= ' btn--no-icon';
 }
 
@@ -26,9 +26,17 @@ $attrs = ($tag === 'button') ? 'type="' . esc_attr($type) . '"' : 'href="' . esc
 ?>
 
 <<?php echo $tag; ?> class="<?php echo esc_attr($classes); ?>" <?php echo $attrs; ?>>
-    <span class="btn__text"><?php echo esc_html($text); ?></span>
+
+    <?php if ($text): ?>
+        <span class="btn__text"><?php echo esc_html($text); ?></span>
+    <?php endif; ?>
 
     <?php if ($icon): ?>
-        <span class="btn__circle"></span>
+        <span class="btn__circle">
+            <?php if ($custom_svg): ?>
+                <?php echo $custom_svg; ?>
+            <?php endif; ?>
+        </span>
     <?php endif; ?>
+
 </<?php echo $tag; ?>>

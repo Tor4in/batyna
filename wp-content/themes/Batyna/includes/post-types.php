@@ -35,13 +35,13 @@ add_action('init', function () {
         'description' => __('Стоматологічні послуги', 'maxi-dent'),
         'labels' => $labels,
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'custom-fields'),
-        'taxonomies' => array('category'), // Можна вимкнути, якщо категорії не потрібні для послуг
+        'taxonomies' => array('category'),
         'hierarchical' => false,
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'menu_position' => 4,
-        'menu_icon' => 'dashicons-heart', // Іконка серця
+        'menu_icon' => 'dashicons-heart',
         'show_in_admin_bar' => true,
         'show_in_nav_menus' => true,
         'can_export' => true,
@@ -50,7 +50,7 @@ add_action('init', function () {
         'publicly_queryable' => true,
         'rewrite' => array('slug' => 'services', 'with_front' => true),
         'capability_type' => 'post',
-        'show_in_rest' => true, // Важливо для роботи Gutenberg (якщо увімкнено) та REST API
+        'show_in_rest' => true,
     );
 
     register_post_type('services', $args);
@@ -83,13 +83,13 @@ add_action('init', function () {
         'description' => __('Наші спеціалісти', 'maxi-dent'),
         'labels' => $labels,
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'custom-fields'),
-        'taxonomies' => array('category'), // Наприклад, категорія "Хірурги", "Ортодонти"
+        'taxonomies' => array('category'),
         'hierarchical' => false,
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'menu_position' => 5,
-        'menu_icon' => 'dashicons-groups', // Іконка групи людей
+        'menu_icon' => 'dashicons-groups',
         'show_in_admin_bar' => true,
         'show_in_nav_menus' => true,
         'can_export' => true,
@@ -131,13 +131,13 @@ add_action('init', function () {
         'description' => __('Новини та статті', 'maxi-dent'),
         'labels' => $labels,
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'custom-fields', 'comments', 'author'),
-        'taxonomies' => array('category', 'post_tag'), // Стандартні категорії та теги
+        'taxonomies' => array('category', 'post_tag'),
         'hierarchical' => false,
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'menu_position' => 6,
-        'menu_icon' => 'dashicons-edit-large', // Іконка олівця
+        'menu_icon' => 'dashicons-edit-large',
         'show_in_admin_bar' => true,
         'show_in_nav_menus' => true,
         'can_export' => true,

@@ -1,5 +1,4 @@
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -10,22 +9,29 @@
 :where(section, header, footer) {
   width: 100vw;
 
-  &>.container {
-    width: min(90rem - var(--_section-offset) * 2, 100vw - var(--_section-offset) * 2);
+  & > .container {
+    width: min(
+      90rem - var(--_section-offset) * 2,
+      100vw - var(--_section-offset) * 2
+    );
     margin-inline: auto;
     height: 100%;
   }
+}
+
+body {
+  background-color: var(--color-background);
+  font-family: $font-family-base;
+  color: var(--color-text, #242424);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 main {
   display: grid;
   gap: var(--_section-gap);
   grid-auto-rows: max-content;
-}
-
-body {
-  font-family: $font-family-base;
-  color: var(--color-text, #242424);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
