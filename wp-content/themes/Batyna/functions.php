@@ -27,8 +27,12 @@ function enqueue_scripts_and_styles()
 function theme_setup()
 {
     show_admin_bar(false);
-    register_nav_menu('menu-header', 'Main menu');
-
+    
+    register_nav_menus( array(
+        'menu-header' => 'Header',
+        'menu-footer' => 'Footer',
+    ) );
+    
     add_theme_support('custom-logo');
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');

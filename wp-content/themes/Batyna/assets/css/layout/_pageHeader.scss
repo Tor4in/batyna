@@ -1,1 +1,116 @@
-header {}
+header {
+  padding: 20px 0;
+  width: 100%;
+  position: relative;
+  z-index: 100;
+
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    // Logo
+    .custom-logo-link {
+      display: block;
+      line-height: 0;
+
+      img {
+        width: 163px;
+        height: 49px;
+        object-fit: contain;
+
+        // Mobile
+        @include mobile {
+          width: 131px;
+          height: 39px;
+        }
+      }
+    }
+
+    // Desktop Navigation
+    .header__right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 6px 24px;
+      border-radius: 100px;
+      background: var(--color-glass-bg);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-header);
+
+      @include gradient-border(100px, 2px, var(--gradient-header-border));
+
+      // Hide on mobile
+      @include mobile {
+        display: none;
+      }
+
+      .nav-list {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        li {
+          a {
+            @include typography($font-family-base, $fw-regular, 14px, 1);
+            color: var(--color-black);
+            white-space: nowrap;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            @include hover {
+              color: var(--color-primary);
+            }
+          }
+
+          &.current-menu-item,
+          &.current_page_parent {
+            a {
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              background-color: var(--color-white);
+              border-radius: 100px;
+              padding: 4px 10px;
+
+              &::before {
+                content: "";
+                display: block;
+                width: 8px;
+                height: 8px;
+                background-color: var(--color-black);
+                border-radius: 50%;
+                flex-shrink: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .btn {
+        display: flex;
+      }
+    }
+
+    // Mobile Controls
+    .header__mobile-controls {
+      display: none; // Hidden on desktop
+
+      @include mobile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-width: 123px;
+        padding: 5px 11px;
+        gap: 10px;
+        border-radius: 100px;
+        background: var(--color-glass-bg);
+        backdrop-filter: blur(18px);
+        box-shadow: var(--shadow-header);
+
+        @include gradient-border(100px, 2px, var(--gradient-header-border));
+      }
+    }
+  }
+}

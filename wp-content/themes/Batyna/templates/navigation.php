@@ -1,16 +1,22 @@
 <?php
-$location = 'menu-header';
+/**
+ * Main Navigation Template Component
+ * Outputs menu based on the provided location.
+ */
 
-if (isset($args['location'])) {
-    $location = $args['location'];
-}
+// Set default location
+$location = $args['location'] ?? 'menu-header';
 
-$args = array(
+$nav_args = array(
     'theme_location' => $location,
-    'container' => 'ul',
+    'container' => false,
     'menu_class' => 'nav-list',
+    'depth' => 1,
+    'fallback_cb' => false,
 );
 
-wp_nav_menu($args);
+// Check if menu exists before output
+if (has_nav_menu($location)) {
+    wp_nav_menu($nav_args);
+}
 ?>
-
