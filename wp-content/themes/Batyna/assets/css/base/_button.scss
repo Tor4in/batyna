@@ -257,6 +257,14 @@
       @include svg-mask("../images/svg/instagram.svg", 16px, 16px);
     }
 
+    &.is-tiktok .btn__circle::before {
+      @include svg-mask("../images/svg/tiktok.svg", 16px, 16px);
+    }
+    
+    &.is-telegram .btn__circle::before {
+      @include svg-mask("../images/svg/telegram.svg", 16px, 16px);
+    }
+
     @include hover {
       background-color: var(--color-white);
       border-color: var(--color-white);
