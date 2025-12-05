@@ -1,9 +1,9 @@
 .backdrop {
-  // Variables
+  // Configuration
   --_open: 500ms;
   --_close: 300ms;
 
-  // Layout & Positioning
+  // Positioning
   position: fixed;
   top: var(--header-height, 80px);
   left: 0;
@@ -11,83 +11,89 @@
   height: calc(100vh - var(--header-height, 80px));
   z-index: 900;
 
-  // Closed State
+  // Default state (hidden)
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity var(--_open), visibility var(--_open);
 
-  // Menu Container
+  // Main container
   &__body {
     position: relative;
+    z-index: 10;
 
-    // Width Calculation
+    // Layout & Dimensions
     width: min(
       90rem - var(--_section-offset) * 2,
       100vw - var(--_section-offset) * 2
     );
-
-    // Alignment
     margin-inline: auto;
     height: fit-content;
     max-height: 80vh;
-    overflow-y: auto;
     padding: 40px 20px;
+    overflow-y: auto;
 
-    // Background
-    background-image: linear-gradient(
-        var(--color-white-50),
-        var(--color-white-50)
-      ),
-      var(--mobile-menu-bg-image);
-    background-size: cover;
-    background-position: center;
-    backdrop-filter: blur(10px);
-
-    // Styling
+    // Visuals
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
-    // Gradient Border
+    box-shadow: var(--shadow-deep);
     @include gradient-border(20px, 2px, var(--gradient-silver));
 
+    // Flex layout
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
 
-    // Animation
+    // Animation entry
     transform: translateY(-20px);
     transition: transform var(--_open) cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
   }
 
+  // Content wrapper
   &__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    gap: 25px;
+    gap: 70px;
 
-    // Menu Items
     .nav-list {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
-      width: 100%;
+      width: 244px;
+      gap: 0;
 
       li {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        // Separator
+        border-bottom: 1px solid var(--color-bg-light);
+        padding-bottom: 16px;
+        margin-bottom: 10px;
+
+        // Remove separator for last item
+        &:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+          margin-bottom: 0;
+        }
+
         a {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          font-family: $font-family-base;
-          font-size: 18px;
-          line-height: 1.4;
+
+          @include typography($font-family-base, $fw-regular, 16px, 24px);
+
+          letter-spacing: 0;
           color: var(--color-black);
           text-decoration: none;
-          transition: all 0.3s ease;
-          padding: 8px 16px;
+          transition: color 0.3s ease;
           border-radius: 100px;
 
           &:hover {
@@ -95,21 +101,21 @@
           }
         }
 
-        // Active Item
+        // Active state
         &.current-menu-item,
         &.current_page_parent {
           a {
-            background-color: var(--color-white);
+            background-color: var(--color-bg-light);
             color: var(--color-black);
             font-weight: $fw-medium;
             gap: 10px;
-            padding: 10px 24px;
+            padding: 4px 20px;
 
             &::before {
               content: "";
               display: block;
-              width: 6px;
-              height: 6px;
+              width: 8px;
+              height: 8px;
               background-color: var(--color-black);
               border-radius: 50%;
               flex-shrink: 0;
@@ -120,11 +126,22 @@
     }
   }
 
+  // Actions
   &__actions {
-    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .mobile-menu-btn {
+      &::after {
+        display: none !important;
+      }
+      justify-content: center;
+      padding: 12px 32px;
+    }
   }
 
-  // Open State
+  // Open state
   &[open] {
     opacity: 1;
     visibility: visible;
@@ -135,9 +152,10 @@
     }
   }
 
-  // Closing State
+  // Closing state
   &[close] {
     transition-duration: var(--_close);
+
     .backdrop__body {
       transition-duration: var(--_close);
       transform: translateY(-20px);
