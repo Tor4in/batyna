@@ -8,7 +8,6 @@ add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 // ============================================
 // Include Custom Post Types
 // ============================================
-// Переконайся, що створив папку includes і поклав туди файл
 require_once get_template_directory() . '/includes/post-types.php';
 
 function enqueue_scripts_and_styles()

@@ -14,7 +14,6 @@
 
 <body <?php body_class(); ?>>
 	<?php
-	// ACF Fields
 	$header_cta = get_field('header_cta', 'option');
 	$btn_text = $header_cta['text'] ?? 'Зв’язатись з нами';
 	$btn_link = $header_cta['link'] ?? '#contact';
@@ -23,19 +22,24 @@
 	<header class="header" id="header">
 		<div class="container">
 			<nav class="main-nav">
-
 				<?php the_custom_logo(); ?>
 
 				<div class="header__right">
-					<?php get_template_part('templates/navigation', null, array('location' => 'menu-header')); ?>
+					<?php get_template_part('templates/navigation', null, ['location' => 'menu-header']); ?>
 
 					<?php if ($header_cta): ?>
-						<?php get_template_part('templates/button', null, [
-							'text' => $btn_text,
-							'link' => $btn_link,
-							'type' => 'quaternary',
-							'icon' => false
-						]); ?>
+						<?php
+						get_template_part(
+							'templates/button',
+							null,
+							[
+								'text' => $btn_text,
+								'link' => $btn_link,
+								'type' => 'quaternary',
+								'icon' => false,
+							]
+						);
+						?>
 					<?php endif; ?>
 				</div>
 
@@ -48,33 +52,30 @@
 						<span class="btn__circle"></span>
 					</button>
 				</div>
-
 			</nav>
 		</div>
 	</header>
 
 	<div class="backdrop" id="mobile-menu" style="--_open: 400ms; --_close: 400ms;">
 		<div class="backdrop__body">
-
 			<div class="backdrop__content">
-				<?php
-				// Mobile Navigation
-				get_template_part('templates/navigation', null, array('location' => 'menu-header'));
-				?>
+				<?php get_template_part('templates/navigation', null, ['location' => 'menu-header']); ?>
 
 				<div class="backdrop__actions">
 					<?php
-					// Використовуємо Primary кнопку, але без іконки
-					get_template_part('templates/button', null, [
-						'text' => $btn_text,
-						'link' => $btn_link,
-						'type' => 'primary', 
-						'icon' => false,     
-						'class' => 'mobile-menu-btn'
-					]);
+					get_template_part(
+						'templates/button',
+						null,
+						[
+							'text' => $btn_text,
+							'link' => $btn_link,
+							'type' => 'primary',
+							'icon' => false,
+							'class' => 'mobile-menu-btn',
+						]
+					);
 					?>
 				</div>
 			</div>
-
 		</div>
 	</div>
