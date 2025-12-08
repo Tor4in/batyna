@@ -30,6 +30,7 @@ $fw-bold: 700;
   // --- Colors: Utility & UI ---
   --color-border: #e0e0e0;
   --color-border-grey: #a5a5a5;
+  --color-border-light: #cccccc;
   --color-grey-silver: #b6b6b6;
   --color-grey-medium: #b6b0b0;
 
@@ -38,6 +39,8 @@ $fw-bold: 700;
   --color-white-50: rgba(255, 255, 255, 0.5);
   --color-glass-bg: rgba(255, 255, 255, 0.3);
   --color-overlay-dark: rgba(0, 0, 0, 0.32);
+  --color-blue-faint: rgba(6, 47, 105, 0.1);
+  --color-primary-faint: #1222481a;
 
   // --- Gradients ---
   --gradient-silver: linear-gradient(
@@ -79,4 +82,10 @@ $fw-bold: 700;
   --shadow-glass-card: 0px 17px 38px 0px #0000001a, 0px 69px 69px 0px #00000017,
     0px 156px 94px 0px #0000000d, 0px 277px 111px 0px #00000003,
     0px 433px 121px 0px #00000000;
+
+  --shadow-blue-card: 0px 17px 38px 0px rgba(18, 34, 72, 0.1),
+    0px 69px 69px 0px rgba(18, 34, 72, 0.09),
+    0px 156px 94px 0px rgba(18, 34, 72, 0.05),
+    0px 277px 111px 0px rgba(18, 34, 72, 0.01),
+    0px 433px 121px 0px rgba(0, 0, 0, 0);
 }
