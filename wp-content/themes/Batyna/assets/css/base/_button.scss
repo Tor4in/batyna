@@ -260,9 +260,13 @@
     &.is-tiktok .btn__circle::before {
       @include svg-mask("../images/svg/tiktok.svg", 16px, 16px);
     }
-    
+
     &.is-telegram .btn__circle::before {
       @include svg-mask("../images/svg/telegram.svg", 16px, 16px);
+    }
+
+    &.is-youtube .btn__circle::before {
+      @include svg-mask("../images/svg/youtube.svg", 16px, 16px);
     }
 
     @include hover {
