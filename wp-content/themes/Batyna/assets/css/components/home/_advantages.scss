@@ -1,0 +1,138 @@
+.advantages {
+  padding-block: var(--_section-gap);
+  overflow: visible;
+
+  &__title {
+    @include typography($font-family-heading, $fw-medium, (32px, 42px), 1);
+    text-align: center;
+    color: var(--color-primary);
+    max-width: 350px;
+    margin-inline: auto;
+    margin-bottom: convert-to-rem(20px);
+  }
+
+  // Desktop grid
+  &__grid {
+    display: none;
+
+    @include desktop {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: convert-to-rem(20px);
+    }
+  }
+
+  // Mobile slider
+  &__slider-wrapper {
+    display: block;
+    padding-bottom: 20px;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
+  // Swiper container
+  .advantages-swiper {
+    overflow: visible;
+  }
+
+  // Slider slide
+  &__slide {
+    height: auto;
+    width: 80vw;
+    max-width: 320px;
+  }
+
+  // Slider navigation
+  &__nav {
+    margin-top: convert-to-rem(20px);
+    display: flex;
+    justify-content: center;
+  }
+
+  // Card
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: convert-to-rem(20px) convert-to-rem(24px);
+    background-color: var(--color-blue-faint);
+    border-radius: 12px;
+    box-shadow: var(--shadow-blue-card), inset 0 0 40px rgba(18, 34, 72, 0.05);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    @include gradient-border(12px, 2px, var(--gradient-silver));
+
+    @include mobile {
+      height: 263px;
+      justify-content: flex-start;
+      padding: 20px 25px;
+      width: 100%;
+    }
+
+    @include desktop {
+      width: calc(33.333% - 14px);
+      height: auto;
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        width: calc(48% - 10px);
+      }
+
+      &:nth-child(6),
+      &:nth-child(7) {
+        width: calc(42% - 10px);
+      }
+    }
+  }
+
+  // Icon circle
+  &__icon-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: convert-to-rem(56px);
+    height: convert-to-rem(56px);
+    border-radius: 50%;
+    background-color: var(--color-primary-faint);
+    border: 1px solid var(--color-border-light);
+    flex-shrink: 0;
+    margin-bottom: convert-to-rem(24px);
+
+    @include mobile {
+      margin-bottom: 10px;
+    }
+  }
+
+  // Icon
+  &__icon {
+    width: convert-to-rem(36px);
+    height: convert-to-rem(28px);
+    object-fit: contain;
+  }
+
+  // Text wrapper
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  // Card title
+  &__card-title {
+    @include typography($font-family-heading, $fw-bold, 18px, 1);
+    color: var(--color-heading);
+    margin-bottom: convert-to-rem(8px);
+  }
+
+  // Card text
+  &__card-desc {
+    @include typography($font-family-base, $fw-regular, 15px, 1.4);
+    color: var(--color-text);
+  }
+}

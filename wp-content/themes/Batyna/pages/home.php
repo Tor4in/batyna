@@ -9,6 +9,8 @@ Template Name: Home
 <main id="home">
     <?php get_template_part('sections/home/hero'); ?>
     <?php get_template_part('sections/home/about-doctor'); ?>
+    <?php get_template_part('sections/home/advantages'); ?>
+
 
 </main>
 
