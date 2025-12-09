@@ -1,0 +1,90 @@
+.services {
+  padding-block: 20px;
+
+  &__header {
+    margin-bottom: convert-to-rem(20px);
+  }
+
+  &__title {
+    @include typography($font-family-heading, $fw-medium, (32px, 42px), 1);
+    color: var(--color-heading);
+    margin-bottom: convert-to-rem(20px);
+  }
+
+  &__header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: convert-to-rem(20px);
+    }
+  }
+
+  &__desc {
+    @include typography($font-family-base, $fw-regular, 15px, 22px);
+    max-width: convert-to-rem(339px);
+    color: var(--color-text);
+
+    @include mobile {
+      max-width: 85%;
+    }
+  }
+
+  &__action {
+    /*
+    @include mobile {
+      width: 100%;
+      .btn { width: 100%; justify-content: center; }
+    }
+    */
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: convert-to-rem(20px);
+    counter-reset: services-counter;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: convert-to-rem(10px);
+    }
+  }
+}
+
+.services-card--cta {
+  counter-increment: none;
+
+  .services-card__bg {
+    object-position: right center;
+  }
+
+  .services-card__number,
+  .services-card__overlay {
+    display: none;
+  }
+
+  .services-card__content {
+    justify-content: space-between;
+    max-width: 100%;
+  }
+
+  .services-card__cta-text {
+    @include typography($font-family-base, $fw-regular, 16px, 24px);
+    color: var(--color-text);
+    margin-bottom: 20px;
+  }
+
+  .services-card__cta-btn {
+    width: fit-content;
+  }
+
+  @include mobile {
+    display: none !important;
+  }
+}
