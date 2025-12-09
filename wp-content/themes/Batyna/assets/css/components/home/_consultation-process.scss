@@ -1,0 +1,355 @@
+.consultation-process {
+  position: relative;
+  padding: convert-to-rem(44px) 0;
+  border-radius: convert-to-rem(22px);
+  overflow: hidden;
+  color: var(--color-white);
+  min-height: convert-to-rem(750px);
+
+  @include mobile {
+    padding: convert-to-rem(30px) 0 convert-to-rem(50px);
+    width: calc(100% - #{convert-to-rem(16px)});
+    margin-inline: auto;
+    min-height: auto;
+    height: auto;
+  }
+
+  // Section container
+  & > .container {
+    @include mobile {
+      width: 100%;
+      padding-inline: var(--_section-offset);
+      margin: 0;
+    }
+  }
+
+  // Background
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Layout
+  &__layout {
+    display: flex;
+    justify-content: space-between;
+    gap: convert-to-rem(50px);
+    height: 100%;
+
+    @include mobile {
+      flex-direction: column;
+      gap: convert-to-rem(30px);
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  // Left column
+  &__left-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: max-content;
+    max-width: 40%;
+    flex: 0 0 auto;
+    gap: convert-to-rem(60px);
+
+    @include mobile {
+      width: 100%;
+      max-width: 100%;
+      gap: convert-to-rem(20px);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(25px);
+
+    @include mobile {
+      gap: convert-to-rem(20px);
+      padding-inline: convert-to-rem(7px);
+    }
+  }
+
+  // Right column
+  &__right-col {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr convert-to-rem(378px);
+    gap: convert-to-rem(20px);
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: convert-to-rem(20px);
+      grid-template-columns: none;
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  // Title
+  &__title {
+    @include typography($font-family-heading, $fw-regular, (24px, 32px), 1.2);
+    letter-spacing: 0;
+    color: var(--color-white);
+    max-width: convert-to-rem(220px);
+
+    @include mobile {
+      line-height: 1;
+      width: 100%;
+      max-width: none;
+    }
+  }
+
+  // Price box
+  &__price-box {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(8px);
+    padding: convert-to-rem(21px) convert-to-rem(13px);
+    border-radius: convert-to-rem(12px);
+    background: var(--color-white-20);
+    border: 1px solid var(--color-grey-dusty);
+    backdrop-filter: blur(4px);
+
+    @include mobile {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+
+  &__price-label {
+    @include typography($font-family-heading, $fw-regular, 16px, 1);
+    color: var(--color-white);
+  }
+
+  &__price-value {
+    @include typography($font-family-heading, $fw-medium, 20px, 1);
+    color: var(--color-white);
+  }
+
+  // CTA
+  &__action {
+    margin-top: convert-to-rem(200px);
+  }
+
+  // Cards list
+  &__cards-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: convert-to-rem(14px);
+    height: 100%;
+
+    @include mobile {
+      height: auto;
+      justify-content: flex-start;
+      gap: convert-to-rem(10px);
+      margin-bottom: 0;
+      width: 100%;
+    }
+  }
+
+  // Video wrapper
+  &__video-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: convert-to-rem(400px);
+
+    @include mobile {
+      height: auto;
+      aspect-ratio: 9 / 16;
+      margin-top: 0;
+      flex-shrink: 0;
+      width: 100%;
+    }
+  }
+
+  // Card
+  .consultation-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: convert-to-rem(12px);
+    padding: convert-to-rem(16px) convert-to-rem(22px);
+    background: var(--color-white-60);
+    border: 1px solid var(--color-white-40);
+    flex-grow: 1;
+    gap: convert-to-rem(8px);
+
+    @include mobile {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-grow: 0;
+      height: auto;
+      gap: convert-to-rem(10px);
+      width: 100%;
+    }
+
+    &__icon-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+    }
+
+    &__icon-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: convert-to-rem(56px);
+      height: convert-to-rem(56px);
+      padding: convert-to-rem(10px) convert-to-rem(7px);
+      border-radius: 50%;
+      background: var(--color-white-60);
+      border: 1px solid var(--color-white);
+      flex-shrink: 0;
+
+      img {
+        width: convert-to-rem(41px);
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
+    &__title {
+      @include typography($font-family-heading, $fw-bold, 18px, 1);
+      color: var(--color-heading);
+    }
+
+    .accordeon {
+      width: 100%;
+
+      @include desktop {
+        grid-template-rows: 1fr !important;
+      }
+    }
+
+    &__desc {
+      @include typography($font-family-base, $fw-regular, 15px, 1);
+      color: var(--color-black);
+      overflow: hidden;
+
+      p {
+        margin-bottom: 0.5em;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      ul {
+        list-style: disc;
+        padding-left: convert-to-rem(20px);
+        margin-top: convert-to-rem(20px);
+        margin-bottom: 0;
+      }
+
+      li {
+        margin-bottom: convert-to-rem(4px);
+
+        &::marker {
+          color: var(--color-black);
+        }
+      }
+    }
+
+    &__footer {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+
+  // Visibility utils
+  .desktop-only {
+    display: block;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .mobile-only {
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+  }
+}
+
+// Video block
+.consultation-video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: convert-to-rem(12px);
+  overflow: hidden;
+  background-color: var(--color-black);
+  isolation: isolate;
+
+  &__cover {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, visibility 0.3s;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &__poster {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__btn {
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  &.is-playing .consultation-video__cover {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

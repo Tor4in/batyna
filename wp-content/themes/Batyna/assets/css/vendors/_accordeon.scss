@@ -2,12 +2,11 @@
   display: grid;
   grid-template-rows: 0fr;
   overflow: hidden;
-  transition: all .5s ease;
+  transition: grid-template-rows 0.5s ease-out;
 
   .content {
     min-height: 0;
     overflow: hidden;
-    transition: height var(--_ts, 3.5s) ease;
   }
 
   &[open] {
