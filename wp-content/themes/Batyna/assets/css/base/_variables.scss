@@ -1,4 +1,4 @@
-// --- Typography ---
+// Typography
 $font-family-base: "Open Sans", sans-serif;
 $font-family-heading: "Mulish", sans-serif;
 
@@ -7,19 +7,19 @@ $fw-medium: 500;
 $fw-semibold: 600;
 $fw-bold: 700;
 
-// --- CSS Variables ---
+// Design tokens
 :root {
-  // --- Spacing & Layout ---
+  // Spacing & layout
   --_section-gap: #{Clamp(3.75rem, 7.5rem)};
   --_section-offset: #{Clamp(0.5rem, 2.5rem)};
   --header-height: 80px;
 
-  // --- Colors: Brand ---
+  // Brand colors
   --color-primary: #122248;
   --color-secondary: #5d7ca9;
   --color-blue-accent: #3971c0;
 
-  // --- Colors: Neutrals ---
+  // Neutral colors
   --color-background: #f7f8ff;
   --color-bg-light: #e8eaf3;
   --color-white: #fff;
@@ -27,22 +27,26 @@ $fw-bold: 700;
   --color-text: #242424;
   --color-heading: #000000;
 
-  // --- Colors: Utility & UI ---
+  // Border & UI colors
   --color-border: #e0e0e0;
   --color-border-grey: #a5a5a5;
   --color-border-light: #cccccc;
   --color-grey-silver: #b6b6b6;
   --color-grey-medium: #b6b0b0;
+  --color-grey-dusty: #a0a0a0;
 
-  // --- Colors: Transparencies & Overlays ---
+  // Overlay & glass colors
   --color-white-70: rgba(255, 255, 255, 0.7);
   --color-white-50: rgba(255, 255, 255, 0.5);
   --color-glass-bg: rgba(255, 255, 255, 0.3);
   --color-overlay-dark: rgba(0, 0, 0, 0.32);
   --color-blue-faint: rgba(6, 47, 105, 0.1);
   --color-primary-faint: #1222481a;
+  --color-white-60: rgba(255, 255, 255, 0.6);
+  --color-white-40: rgba(255, 255, 255, 0.4);
+  --color-white-20: rgba(255, 255, 255, 0.2);
 
-  // --- Gradients ---
+  // Gradients
   --gradient-silver: linear-gradient(
     180deg,
     #f2f2f2 60.58%,
@@ -63,10 +67,30 @@ $fw-bold: 700;
     #cfd9e3 55.55%
   );
 
-  // --- Images ---
+  --gradient-btn-shine: linear-gradient(
+    120deg,
+    transparent 0%,
+    var(--color-blue-accent) 50%,
+    transparent 100%
+  );
+
+  --gradient-btn-radial: radial-gradient(
+    circle at 40% 20%,
+    rgba(255, 255, 255, 0.3) 0%,
+    var(--color-primary) 60%
+  );
+
+  --gradient-slider-border: linear-gradient(
+    180deg,
+    #fffefe 34.62%,
+    #f2f2f2 60.58%,
+    #acacac 99.99%
+  );
+
+  // Images
   --hero-bg-image: url("../images/hero-bg.webp");
 
-  // --- Shadows ---
+  // Shadows
   --shadow-header: 0px 17px 38px 0px rgba(0, 0, 0, 0.1),
     0px 69px 69px 0px rgba(0, 0, 0, 0.09),
     0px 156px 94px 0px rgba(0, 0, 0, 0.05),
@@ -88,4 +112,6 @@ $fw-bold: 700;
     0px 156px 94px 0px rgba(18, 34, 72, 0.05),
     0px 277px 111px 0px rgba(18, 34, 72, 0.01),
     0px 433px 121px 0px rgba(0, 0, 0, 0);
+
+  --shadow-btn-circle: 0px 4px 4px 0px #00000040;
 }

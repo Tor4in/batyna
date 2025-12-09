@@ -10,12 +10,7 @@
     left: -150%;
     width: 80%;
     height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      var(--color-blue-accent) 50%,
-      transparent 100%
-    );
+    background: var(--gradient-btn-shine);
     opacity: 0;
     transform: skewX(-20deg);
     transition: left 0s, opacity 0s;
@@ -63,7 +58,7 @@
     border-radius: 50%;
     position: relative;
     z-index: 2;
-    transition: background-color 0.3s ease, transform 0.4s ease;
+    transition: background 0.3s ease, transform 0.4s ease, box-shadow 0.3s ease;
 
     &::before {
       content: "";
@@ -103,7 +98,7 @@
     }
   }
 
-  // Secondary
+  // Secondary solid
   &-secondary {
     background-color: transparent;
     border: 1px solid var(--color-white);
@@ -137,6 +132,46 @@
 
         &::before {
           background-color: var(--color-white);
+        }
+      }
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  // Secondary gradient
+  &-secondary-gradient {
+    background-color: transparent;
+    border: 1px solid var(--color-white);
+    padding: 8px 8px 7px 20px;
+
+    &,
+    &:visited {
+      color: var(--color-white);
+    }
+
+    .btn__circle {
+      background: var(--gradient-btn-radial);
+      box-shadow: var(--shadow-btn-circle);
+
+      &::before {
+        background-color: var(--color-white);
+      }
+    }
+
+    @include hover {
+      background-color: var(--color-white-70);
+      border-color: var(--color-white);
+      color: var(--color-primary);
+
+      .btn__circle {
+        background: var(--color-white);
+        box-shadow: none;
+
+        &::before {
+          background-color: var(--color-primary);
         }
       }
     }
@@ -246,6 +281,8 @@
       height: 100%;
       background-color: transparent;
       border-radius: 50%;
+      box-shadow: none;
+      background: none;
 
       &::before {
         width: 16px;
@@ -333,6 +370,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background: none;
+      box-shadow: none;
 
       &::before {
         @include svg-mask("../images/svg/phone-outline.svg", 13px, 13px);
@@ -377,6 +416,8 @@
       align-items: center;
       justify-content: center;
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: none;
+      box-shadow: none;
 
       &::before {
         @include svg-mask("../images/svg/burger.svg", 25px, 10px);
@@ -416,6 +457,99 @@
       }
     }
   }
+
+  // Play button (overlay)
+  &-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: convert-to-rem(104px);
+    height: convert-to-rem(70px);
+    padding: convert-to-rem(22px) convert-to-rem(40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: convert-to-rem(10px);
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(18px);
+    border-radius: convert-to-rem(12px);
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: var(--shadow-blue-card);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: convert-to-rem(12px);
+      padding: 2px;
+      background: var(--gradient-silver);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .btn__circle {
+      width: convert-to-rem(24px);
+      height: convert-to-rem(26px);
+      flex-shrink: 0;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+
+      &::before {
+        display: none;
+      }
+
+      img,
+      svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+    }
+
+    @include hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+  }
+
+  // Read More / Toggle button
+  &-read-more {
+    width: 100%;
+    height: convert-to-rem(26px);
+    border-radius: convert-to-rem(6px);
+    padding: convert-to-rem(4px) convert-to-rem(16px);
+    background-color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: none;
+
+    // Override base props
+    gap: 0;
+
+    @include typography($font-family-base, $fw-regular, 12px, 18px, 0.25px);
+    color: var(--color-white);
+
+    .btn__circle {
+      display: none;
+    }
+
+    @include hover {
+      background-color: var(--color-blue-accent);
+      color: var(--color-white);
+    }
+  }
 }
 
 // Slider navigation
@@ -426,7 +560,6 @@
   z-index: 5;
   user-select: none;
 
-  // Icon
   &__icon {
     display: block;
     background-color: currentColor;
@@ -441,21 +574,16 @@
     }
   }
 
-  // Prev button
   &__prev {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border-radius: 100px;
-    background: rgba(255, 255, 255, 0.3);
+    background: var(--color-glass-bg);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    box-shadow: 0px 17px 38px 0px rgba(0, 0, 0, 0.1),
-      0px 69px 69px 0px rgba(0, 0, 0, 0.09),
-      0px 156px 94px 0px rgba(0, 0, 0, 0.05),
-      0px 277px 111px 0px rgba(0, 0, 0, 0.01),
-      0px 433px 121px 0px rgba(0, 0, 0, 0);
+    box-shadow: var(--shadow-header);
     border: 2px solid transparent;
     background-clip: padding-box;
     display: flex;
@@ -472,12 +600,7 @@
       inset: -2px;
       border-radius: 100px;
       padding: 2px;
-      background: linear-gradient(
-        180deg,
-        #fffefe 34.62%,
-        #f2f2f2 60.58%,
-        #acacac 99.99%
-      );
+      background: var(--gradient-slider-border);
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
@@ -492,7 +615,6 @@
     }
   }
 
-  // Next button
   &__next {
     position: absolute;
     right: -1px;
