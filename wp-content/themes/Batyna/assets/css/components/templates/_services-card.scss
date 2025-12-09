@@ -1,0 +1,118 @@
+.services-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: convert-to-rem(220px);
+
+  @include mobile {
+    min-height: convert-to-rem(155px);
+  }
+
+  padding: convert-to-rem(10px) convert-to-rem(22px) convert-to-rem(20px)
+    convert-to-rem(22px);
+  border-radius: 22px;
+  border: 1px solid var(--color-border-medium);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-card-sm);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  counter-increment: services-counter;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--color-white-80);
+    z-index: 1;
+    transition: background 0.3s ease;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: convert-to-rem(228px);
+
+    @include mobile {
+      max-width: 100%;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+
+    @include mobile {
+      flex-direction: row;
+      align-items: center;
+      gap: convert-to-rem(15px);
+      margin-bottom: convert-to-rem(15px);
+    }
+  }
+
+  &__number {
+    margin-bottom: convert-to-rem(6px);
+
+    @include mobile {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    &::before {
+      content: counter(services-counter, decimal-leading-zero);
+      @include typography($font-family-base, $fw-semibold, (48px, 62px), 1);
+      color: var(--color-bg-light);
+
+      @include mobile {
+        @include typography($font-family-base, $fw-semibold, 62px, 1);
+      }
+    }
+  }
+
+  &__title {
+    @include typography($font-family-base, $fw-semibold, (18px, 20px), 1);
+    color: var(--color-heading);
+    margin-bottom: auto;
+    padding-bottom: convert-to-rem(22px);
+
+    @include mobile {
+      @include typography($font-family-base, $fw-semibold, 20px, 1);
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__link {
+    @include typography($font-family-base, $fw-regular, 14px, 1);
+    color: var(--color-blue-accent);
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    margin-top: auto;
+    width: fit-content;
+    cursor: pointer;
+
+    &:visited {
+      color: var(--color-blue-accent);
+    }
+
+    @include hover {
+      text-decoration: none;
+    }
+  }
+
+  @include hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+}
