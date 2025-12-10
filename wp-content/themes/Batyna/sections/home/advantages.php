@@ -3,6 +3,10 @@
  * Section: Home - Advantages
  */
 
+if (!get_field('advantages_enabled')) {
+    return;
+}
+
 $title = get_field('advantages_title');
 $advantages_list = get_field('advantages_list');
 
@@ -24,7 +28,7 @@ if ($advantages_list): ?>
                         <div class="advantages__icon-wrapper">
                             <?php if ($icon_url): ?>
                                 <img src="<?php echo esc_url($icon_url); ?>" alt="<?php echo esc_attr($card_title); ?>"
-                                    class="advantages__icon">
+                                    class="advantages__icon" loading="lazy">
                             <?php endif; ?>
                         </div>
 
@@ -34,7 +38,9 @@ if ($advantages_list): ?>
                             <?php endif; ?>
 
                             <?php if ($card_desc): ?>
-                                <p class="advantages__card-desc"><?php echo wp_kses_post($card_desc); ?></p>
+                                <div class="advantages__card-desc">
+                                    <?php echo wp_kses_post($card_desc); ?>
+                                </div>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -54,7 +60,7 @@ if ($advantages_list): ?>
                                     <div class="advantages__icon-wrapper">
                                         <?php if ($icon_url): ?>
                                             <img src="<?php echo esc_url($icon_url); ?>" alt="<?php echo esc_attr($card_title); ?>"
-                                                class="advantages__icon">
+                                                class="advantages__icon" loading="lazy">
                                         <?php endif; ?>
                                     </div>
 
@@ -64,7 +70,9 @@ if ($advantages_list): ?>
                                         <?php endif; ?>
 
                                         <?php if ($card_desc): ?>
-                                            <p class="advantages__card-desc"><?php echo wp_kses_post($card_desc); ?></p>
+                                            <div class="advantages__card-desc">
+                                                <?php echo wp_kses_post($card_desc); ?>
+                                            </div>
                                         <?php endif; ?>
                                     </div>
                                 </div>

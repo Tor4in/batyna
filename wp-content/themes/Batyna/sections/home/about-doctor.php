@@ -3,20 +3,25 @@
  * Section: Home About-Doctor
  */
 
-// Section fields
+// Section visibility toggle
+if (!get_field('about_doc_enabled')) {
+    return;
+}
+
+// Main fields
 $title = get_field('about_doc_title');
 $name = get_field('about_doc_name');
-$intro = get_field('about_doc_intro');
-$list = get_field('about_doc_list');
+$content = get_field('about_doc_content');
+
 $photo = get_field('about_doc_photo');
 $acf_link = get_field('about_doc_btn_link');
 $btn_link = $acf_link ?: '#contact';
 
-// Bottom block fields
+// Bottom section fields
 $bottom_desc = get_field('about_doc_bottom_desc');
 $stats = get_field('about_doc_stats');
 
-// Social links
+// Social links (options)
 $socials = [
     'facebook' => get_field('social_facebook', 'option'),
     'instagram' => get_field('social_instagram', 'option'),
@@ -25,7 +30,7 @@ $socials = [
     'youtube' => get_field('social_youtube', 'option'),
 ];
 
-// Defaults
+// Default title
 if (!$title) {
     $title = 'Про лікаря';
 }
@@ -36,25 +41,21 @@ if (!$title) {
         <div class="doctor-card">
             <div class="doctor-card__content">
                 <?php if ($title): ?>
-                    <h2 class="doctor-card__title"><?php echo esc_html($title); ?></h2>
+                    <h2 class="doctor-card__title">
+                        <?php echo esc_html($title); ?>
+                    </h2>
                 <?php endif; ?>
 
                 <?php if ($name): ?>
-                    <h3 class="doctor-card__name"><?php echo esc_html($name); ?></h3>
+                    <h3 class="doctor-card__name">
+                        <?php echo esc_html($name); ?>
+                    </h3>
                 <?php endif; ?>
 
-                <?php if ($intro): ?>
-                    <div class="doctor-card__intro">
-                        <?php echo wp_kses_post($intro); ?>
+                <?php if ($content): ?>
+                    <div class="doctor-card__text-content">
+                        <?php echo wp_kses_post($content); ?>
                     </div>
-                <?php endif; ?>
-
-                <?php if ($list): ?>
-                    <ul class="doctor-card__list">
-                        <?php foreach ($list as $item): ?>
-                            <li><?php echo esc_html($item['item_text']); ?></li>
-                        <?php endforeach; ?>
-                    </ul>
                 <?php endif; ?>
 
                 <div class="doctor-card__action">
