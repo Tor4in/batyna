@@ -3,6 +3,11 @@
  * Section: Home Services
  */
 
+
+if (!get_field('services_enabled')) {
+    return;
+}
+
 // Header fields
 $title = get_field('services_title');
 $description = get_field('services_desc');

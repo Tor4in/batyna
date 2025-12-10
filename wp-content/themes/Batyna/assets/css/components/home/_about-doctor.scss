@@ -1,11 +1,15 @@
+@use "sass:math";
+
 .doctor-card {
   display: flex;
-  min-height: 530px;
+  min-height: convert-to-rem(530px);
   background: var(--gradient-doctor-card);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 40px 43px 16px 60px;
+  border-radius: convert-to-rem(12px);
+  padding: convert-to-rem(40px) convert-to-rem(43px) convert-to-rem(16px)
+    convert-to-rem(60px);
 
+  // Left content column
   &__content {
     flex: 1;
     display: flex;
@@ -15,38 +19,41 @@
   &__title {
     color: var(--color-primary);
     @include typography($font-family-heading, $fw-medium, (32px, 42px), 1);
-    margin-bottom: 20px;
+    margin-bottom: convert-to-rem(20px);
   }
 
   &__name {
     color: var(--color-primary);
     @include typography($font-family-base, $fw-semibold, (20px, 22px), 22px);
-    margin-bottom: 5px;
+    margin-bottom: convert-to-rem(5px);
   }
 
-  &__intro {
+  // WYSIWYG content styles
+  &__text-content {
     color: var(--color-black);
-    @include typography($font-family-base, $fw-semibold, 15px, 22px);
-    margin-bottom: 20px;
+    margin-bottom: convert-to-rem(33px);
 
     p {
-      margin-bottom: 10px;
+      @include typography($font-family-base, $fw-regular, 15px, 22px);
+      margin-bottom: convert-to-rem(20px);
 
-      &:last-child {
-        margin-bottom: 0;
+      strong,
+      b {
+        font-weight: $fw-semibold;
       }
     }
-  }
 
-  &__list {
-    margin-bottom: 33px;
-    max-width: 95%;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-top: convert-to-rem(20px);
+    }
 
     li {
       position: relative;
-      padding-left: 15px;
-      margin-bottom: 10px;
-      color: var(--color-black);
+      padding-left: convert-to-rem(15px);
+      margin-bottom: convert-to-rem(28px);
       @include typography($font-family-base, $fw-regular, 15px, 22px);
 
       &:last-child {
@@ -57,74 +64,79 @@
         content: "";
         position: absolute;
         left: 0;
-        top: 8px;
-        width: 4px;
-        height: 4px;
+        top: convert-to-rem(8px);
+        width: convert-to-rem(4px);
+        height: convert-to-rem(4px);
         background-color: var(--color-black);
         border-radius: 50%;
       }
     }
   }
 
+  // Vertical divider between text and image
   &__divider {
     width: 1px;
     background-color: var(--color-grey-medium);
-    margin-left: 22px;
-    margin-right: 54px;
-    height: 400px;
+    margin-left: convert-to-rem(22px);
+    margin-right: convert-to-rem(54px);
+    height: convert-to-rem(400px);
     align-self: center;
   }
 
+  // Photo column
   &__image-wrapper {
     flex-shrink: 0;
-    width: 555px;
+    width: convert-to-rem(555px);
     max-width: 100%;
 
     img {
       display: block;
       width: 100%;
-      height: 498px;
+      height: convert-to-rem(498px);
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: convert-to-rem(12px);
     }
   }
 }
 
 .doctor-bottom {
-  margin-top: 20px;
-  min-height: 422px;
+  margin-top: convert-to-rem(20px);
+  min-height: convert-to-rem(422px);
   background: var(--gradient-doctor-card);
   border: 1px solid var(--color-border);
-  border-radius: 22px;
+  border-radius: convert-to-rem(22px);
   padding-block: Clamp(23px, 45px);
   padding-inline: Clamp(11px, 215px);
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  // Social buttons row
   &__socials {
     display: flex;
-    gap: 10px;
-    margin-bottom: 35px;
+    gap: convert-to-rem(10px);
+    margin-bottom: convert-to-rem(35px);
   }
 
+  // Bottom description
   &__desc {
     color: var(--color-black);
     text-align: center;
     @include typography($font-family-heading, $fw-medium, (18px, 22px), 22px);
-    margin-bottom: 35px;
+    margin-bottom: convert-to-rem(35px);
     width: 100%;
-    max-width: 670px;
+    max-width: convert-to-rem(670px);
     margin-inline: auto;
   }
 }
 
+// Stats grid
 .doctor-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: convert-to-rem(10px);
   width: 100%;
-  padding: 5px;
+  padding: convert-to-rem(5px);
   justify-items: center;
 }
 
@@ -135,13 +147,13 @@
   justify-content: center;
   height: Clamp(82px, 122px);
   width: 100%;
-  max-width: 210px;
-  padding: Clamp(10px, 20px) 24px;
-  gap: 5px;
+  max-width: convert-to-rem(210px);
+  padding: Clamp(10px, 20px) convert-to-rem(24px);
+  gap: convert-to-rem(5px);
   background-color: var(--color-glass-bg);
   box-shadow: var(--shadow-glass-card);
-  backdrop-filter: blur(18px);
-  @include gradient-border(12px, 2px, var(--gradient-silver));
+  backdrop-filter: blur(convert-to-rem(18px));
+  @include gradient-border(convert-to-rem(12px), 2px, var(--gradient-silver));
 
   &__number {
     color: var(--color-primary);
@@ -157,10 +169,11 @@
   }
 }
 
+// Tablet layout
 @media (max-width: 991px) {
   .doctor-card {
     flex-direction: column;
-    padding: 30px 20px;
+    padding: convert-to-rem(30px) convert-to-rem(20px);
 
     &__content {
       display: contents;
@@ -168,47 +181,37 @@
 
     &__title {
       order: 1;
-      margin-bottom: 10px;
+      margin-bottom: convert-to-rem(10px);
     }
 
     &__name {
       order: 2;
-      margin-bottom: 5px;
+      margin-bottom: convert-to-rem(5px);
     }
 
-    &__intro {
+    &__text-content {
       order: 3;
-      margin-bottom: 20px;
-      font-weight: $fw-regular;
+      max-width: 100%;
+
+      li {
+        margin-bottom: convert-to-rem(20px);
+      }
     }
 
     &__image-wrapper {
       order: 4;
       width: 100%;
-      margin-bottom: 14px;
+      margin-bottom: convert-to-rem(14px);
 
       img {
-        height: 384px;
+        height: convert-to-rem(384px);
         object-position: top;
-      }
-    }
-
-    &__list {
-      order: 5;
-      max-width: 100%;
-      margin-bottom: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-
-      li {
-        margin-bottom: 0;
       }
     }
 
     &__action {
       order: 6;
-      margin-top: 20px;
+      margin-top: convert-to-rem(20px);
     }
 
     &__divider {
@@ -221,6 +224,7 @@
   }
 }
 
+// Mobile layout
 @media (max-width: 550px) {
   .doctor-stats {
     grid-template-columns: 1fr;

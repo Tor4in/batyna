@@ -3,12 +3,21 @@
  * Section: Consultation Process
  */
 
-// Fields
+// Section visibility toggle
+if (!get_field('consultation_enabled')) {
+    return;
+}
+
+// Main fields
 $title = get_field('consultation_title');
 $price_label = get_field('consultation_price_label');
 $price_value = get_field('consultation_price_value');
 $btn_data = get_field('consultation_btn');
 $steps = get_field('consultation_steps');
+
+// Media fields
+$media_type = get_field('consultation_media_type') ?: 'video';
+$static_image = get_field('consultation_image');
 $video_poster = get_field('consultation_video_poster');
 $video_file = get_field('consultation_video_file');
 
@@ -120,34 +129,51 @@ $play_icon_html = '<img src="' . esc_url($play_icon_url) . '" alt="">';
 
                 <div class="consultation-process__video-wrapper">
                     <div class="consultation-video js-video-wrapper">
-                        <?php if ($video_file): ?>
-                            <div class="consultation-video__cover js-video-cover">
-                                <button type="button" class="consultation-video__btn js-video-play-btn"
-                                    aria-label="Play video">
-                                    <?php
-                                    get_template_part(
-                                        'templates/button',
-                                        null,
-                                        [
-                                            'type' => 'play',
-                                            'svg' => $play_icon_html,
-                                        ]
-                                    );
-                                    ?>
-                                </button>
-                                <?php if ($video_poster): ?>
-                                    <div class="consultation-video__poster">
-                                        <img src="<?php echo esc_url($video_poster); ?>" alt="Consultation video preview"
-                                            loading="lazy">
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <video class="consultation-video__player js-video-element" playsinline preload="none">
-                                <source src="<?php echo esc_url($video_file); ?>" type="video/mp4">
-                            </video>
-                        <?php elseif ($video_poster): ?>
-                            <img src="<?php echo esc_url($video_poster); ?>" alt="Video" class="consultation-video__player">
+
+                        <?php // Media: static image or video ?>
+
+                        <?php if ($media_type === 'image' && $static_image): ?>
+
+                            <img src="<?php echo esc_url($static_image); ?>"
+                                alt="<?php echo esc_attr(strip_tags($title)); ?>" class="consultation-video__player"
+                                loading="lazy">
+
+                        <?php else: ?>
+
+                            <?php if ($video_file): ?>
+                                <div class="consultation-video__cover js-video-cover">
+                                    <button type="button" class="consultation-video__btn js-video-play-btn"
+                                        aria-label="Play video">
+                                        <?php
+                                        get_template_part(
+                                            'templates/button',
+                                            null,
+                                            [
+                                                'type' => 'play',
+                                                'svg' => $play_icon_html,
+                                            ]
+                                        );
+                                        ?>
+                                    </button>
+
+                                    <?php if ($video_poster): ?>
+                                        <div class="consultation-video__poster">
+                                            <img src="<?php echo esc_url($video_poster); ?>" alt="Consultation video preview"
+                                                loading="lazy">
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <video class="consultation-video__player js-video-element" playsinline preload="none">
+                                    <source src="<?php echo esc_url($video_file); ?>" type="video/mp4">
+                                </video>
+
+                            <?php elseif ($video_poster): ?>
+                                <img src="<?php echo esc_url($video_poster); ?>" alt="Video" class="consultation-video__player">
+                            <?php endif; ?>
+
                         <?php endif; ?>
+
                     </div>
                 </div>
 
@@ -157,6 +183,7 @@ $play_icon_html = '<img src="' . esc_url($play_icon_url) . '" alt="">';
 </section>
 
 <script>
+    // Toggle accordion content on mobile
     function toggleConsultationCard(btn) {
         const card = btn.closest('.consultation-card');
         const content = card.querySelector('.accordeon');
