@@ -25,7 +25,7 @@ function enqueue_scripts_and_styles()
 
 function theme_setup()
 {
-    show_admin_bar(false);
+    show_admin_bar(true);
     
     register_nav_menus( array(
         'menu-header' => 'Header',
