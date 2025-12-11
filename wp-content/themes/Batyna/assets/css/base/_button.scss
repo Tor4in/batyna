@@ -33,14 +33,11 @@
   align-items: center;
   justify-content: space-between;
   width: fit-content;
-  gap: 10px;
-  border-radius: 100px;
+  gap: convert-to-rem(10px);
+  border-radius: convert-to-rem(100px);
   cursor: pointer;
   text-decoration: none;
-  font-family: $font-family-base;
-  font-weight: $fw-regular;
-  font-size: 16px;
-  line-height: 1;
+  @include typography($font-family-base, $fw-regular, 16px, 1);
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;
 
@@ -53,8 +50,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: convert-to-rem(30px);
+    height: convert-to-rem(30px);
     border-radius: 50%;
     position: relative;
     z-index: 2;
@@ -62,8 +59,33 @@
 
     &::before {
       content: "";
-      @include svg-mask("../images/svg/button-icon.svg", 14px, 14px);
+      @include svg-mask(
+        "../images/svg/button-icon.svg",
+        convert-to-rem(14px),
+        convert-to-rem(14px)
+      );
       transition: background-color 0.3s ease;
+    }
+  }
+
+  // Transparent
+  &-transparent {
+    background-color: transparent;
+    border: 1px solid var(--color-primary);
+    padding: convert-to-rem(8px) convert-to-rem(26px);
+    height: convert-to-rem(35px);
+    border-radius: convert-to-rem(100px);
+    gap: convert-to-rem(10px);
+    @include typography($font-family-base, $fw-regular, 14px, 1);
+    color: var(--color-primary);
+
+    @include hover {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    &:active {
+      transform: scale(0.98);
     }
   }
 
@@ -71,7 +93,8 @@
   &-primary {
     background-color: var(--color-primary);
     border: 1px solid var(--color-primary);
-    padding: 8px 8px 7px 20px;
+    padding: convert-to-rem(8px) convert-to-rem(8px) convert-to-rem(7px)
+      convert-to-rem(20px);
 
     &,
     &:visited {
@@ -98,11 +121,12 @@
     }
   }
 
-  // Secondary solid
+  // Secondary
   &-secondary {
     background-color: transparent;
     border: 1px solid var(--color-white);
-    padding: 8px 8px 7px 20px;
+    padding: convert-to-rem(8px) convert-to-rem(8px) convert-to-rem(7px)
+      convert-to-rem(20px);
 
     &,
     &:visited {
@@ -110,7 +134,7 @@
     }
 
     &.btn--no-icon {
-      padding: 12px 26px;
+      padding: convert-to-rem(12px) convert-to-rem(26px);
       justify-content: center;
     }
 
@@ -145,7 +169,8 @@
   &-secondary-gradient {
     background-color: transparent;
     border: 1px solid var(--color-white);
-    padding: 8px 8px 7px 20px;
+    padding: convert-to-rem(8px) convert-to-rem(8px) convert-to-rem(7px)
+      convert-to-rem(20px);
 
     &,
     &:visited {
@@ -185,7 +210,8 @@
   &-tertiary {
     background-color: transparent;
     border: 1px solid var(--color-black);
-    padding: 8px 8px 8px 20px;
+    padding: convert-to-rem(8px) convert-to-rem(8px) convert-to-rem(8px)
+      convert-to-rem(20px);
 
     &,
     &:visited {
@@ -223,7 +249,7 @@
   &-quaternary {
     background-color: var(--color-primary);
     border: 1px solid var(--color-primary);
-    padding: 10px 26px;
+    padding: convert-to-rem(10px) convert-to-rem(26px);
 
     &,
     &:visited {
@@ -259,8 +285,8 @@
 
   // Social
   &-social {
-    width: 30px;
-    height: 30px;
+    width: convert-to-rem(30px);
+    height: convert-to-rem(30px);
     border-radius: 50%;
     padding: 0;
     background-color: transparent;
@@ -285,30 +311,50 @@
       background: none;
 
       &::before {
-        width: 16px;
-        height: 16px;
+        width: convert-to-rem(16px);
+        height: convert-to-rem(16px);
         background-color: currentColor;
       }
     }
 
     &.is-facebook .btn__circle::before {
-      @include svg-mask("../images/svg/facebook.svg", 16px, 16px);
+      @include svg-mask(
+        "../images/svg/facebook.svg",
+        convert-to-rem(16px),
+        convert-to-rem(16px)
+      );
     }
 
     &.is-instagram .btn__circle::before {
-      @include svg-mask("../images/svg/instagram.svg", 16px, 16px);
+      @include svg-mask(
+        "../images/svg/instagram.svg",
+        convert-to-rem(16px),
+        convert-to-rem(16px)
+      );
     }
 
     &.is-tiktok .btn__circle::before {
-      @include svg-mask("../images/svg/tiktok.svg", 16px, 16px);
+      @include svg-mask(
+        "../images/svg/tiktok.svg",
+        convert-to-rem(16px),
+        convert-to-rem(16px)
+      );
     }
 
     &.is-telegram .btn__circle::before {
-      @include svg-mask("../images/svg/telegram.svg", 16px, 16px);
+      @include svg-mask(
+        "../images/svg/telegram.svg",
+        convert-to-rem(16px),
+        convert-to-rem(16px)
+      );
     }
 
     &.is-youtube .btn__circle::before {
-      @include svg-mask("../images/svg/youtube.svg", 16px, 16px);
+      @include svg-mask(
+        "../images/svg/youtube.svg",
+        convert-to-rem(16px),
+        convert-to-rem(16px)
+      );
     }
 
     @include hover {
@@ -345,8 +391,8 @@
 
   // Phone outline
   &-phone-outline {
-    width: 30px;
-    height: 30px;
+    width: convert-to-rem(30px);
+    height: convert-to-rem(30px);
     padding: 0;
     border-radius: 50%;
     background-color: transparent;
@@ -374,7 +420,11 @@
       box-shadow: none;
 
       &::before {
-        @include svg-mask("../images/svg/phone-outline.svg", 13px, 13px);
+        @include svg-mask(
+          "../images/svg/phone-outline.svg",
+          convert-to-rem(13px),
+          convert-to-rem(13px)
+        );
         background-color: currentColor;
       }
     }
@@ -388,8 +438,8 @@
 
   // Burger
   &-burger {
-    width: 36px;
-    height: 36px;
+    width: convert-to-rem(36px);
+    height: convert-to-rem(36px);
     padding: 0;
     border-radius: 50%;
     background-color: var(--color-primary);
@@ -420,13 +470,16 @@
       box-shadow: none;
 
       &::before {
-        @include svg-mask("../images/svg/burger.svg", 25px, 10px);
+        @include svg-mask(
+          "../images/svg/burger.svg",
+          convert-to-rem(25px),
+          convert-to-rem(10px)
+        );
         background-color: currentColor;
         transition: background-color 0.3s ease;
       }
     }
 
-    // Active state (menu open)
     &.is-active {
       background-color: var(--color-primary);
       border-color: var(--color-primary);
@@ -436,7 +489,11 @@
         transform: rotate(180deg);
 
         &::before {
-          @include svg-mask("../images/svg/close.svg", 14px, 14px);
+          @include svg-mask(
+            "../images/svg/close.svg",
+            convert-to-rem(14px),
+            convert-to-rem(14px)
+          );
           background-color: var(--color-white);
         }
       }
@@ -458,7 +515,7 @@
     }
   }
 
-  // Play button (overlay)
+  // Play button
   &-play {
     position: absolute;
     top: 50%;
@@ -478,15 +535,15 @@
     cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease;
     box-shadow: var(--shadow-blue-card);
-    border: 2px solid transparent;
+    border: convert-to-rem(2px) solid transparent;
     background-clip: padding-box;
 
     &::after {
       content: "";
       position: absolute;
-      inset: -2px;
+      inset: convert-to-rem(-2px);
       border-radius: convert-to-rem(12px);
-      padding: 2px;
+      padding: convert-to-rem(2px);
       background: var(--gradient-silver);
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
@@ -523,7 +580,7 @@
     }
   }
 
-  // Read More / Toggle button
+  // Read more toggle
   &-read-more {
     width: 100%;
     height: convert-to-rem(26px);
@@ -534,10 +591,7 @@
     align-items: center;
     justify-content: flex-start;
     border: none;
-
-    // Override base props
     gap: 0;
-
     @include typography($font-family-base, $fw-regular, 12px, 18px, 0.25px);
     color: var(--color-white);
 
@@ -555,8 +609,8 @@
 // Slider navigation
 .slider-nav {
   position: relative;
-  width: 115px;
-  height: 32px;
+  width: convert-to-rem(115px);
+  height: convert-to-rem(32px);
   z-index: 5;
   user-select: none;
 
@@ -566,11 +620,19 @@
     transition: background-color 0.3s ease;
 
     &--prev {
-      @include svg-mask("../images/svg/arrow-left.svg", 24px, 24px);
+      @include svg-mask(
+        "../images/svg/arrow-left.svg",
+        convert-to-rem(24px),
+        convert-to-rem(24px)
+      );
     }
 
     &--next {
-      @include svg-mask("../images/svg/arrow-right.svg", 24px, 24px);
+      @include svg-mask(
+        "../images/svg/arrow-right.svg",
+        convert-to-rem(24px),
+        convert-to-rem(24px)
+      );
     }
   }
 
@@ -579,16 +641,16 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    border-radius: 100px;
+    border-radius: convert-to-rem(100px);
     background: var(--color-glass-bg);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     box-shadow: var(--shadow-header);
-    border: 2px solid transparent;
+    border: convert-to-rem(2px) solid transparent;
     background-clip: padding-box;
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    padding-left: convert-to-rem(20px);
     cursor: pointer;
     transition: opacity 0.3s;
     z-index: 1;
@@ -597,10 +659,10 @@
     &::before {
       content: "";
       position: absolute;
-      inset: -2px;
-      border-radius: 100px;
-      padding: 2px;
-      background: var(--gradient-slider-border);
+      inset: convert-to-rem(-2px);
+      border-radius: convert-to-rem(100px);
+      padding: convert-to-rem(2px);
+      background: var(--gradient-border-metallic);
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
@@ -619,9 +681,9 @@
     position: absolute;
     right: -1px;
     top: -1px;
-    width: 57px;
-    height: 34px;
-    border-radius: 100px;
+    width: convert-to-rem(57px);
+    height: convert-to-rem(34px);
+    border-radius: convert-to-rem(100px);
     background-color: var(--color-primary);
     border: 1px solid var(--color-black);
     display: flex;

@@ -12,7 +12,7 @@ Template Name: Home
     <?php get_template_part('sections/home/advantages'); ?>
     <?php get_template_part('sections/home/consultation-process'); ?>
     <?php get_template_part('sections/home/services'); ?>
-
+    <?php get_template_part('sections/home/doctors'); ?>
 
 </main>
 

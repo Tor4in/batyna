@@ -1,5 +1,5 @@
 .services {
-  padding-block: 20px;
+  padding-block: convert-to-rem(20px);
 
   &__header {
     margin-bottom: convert-to-rem(20px);
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 20px;
+    gap: convert-to-rem(20px);
     flex-wrap: wrap;
 
     @include mobile {
@@ -36,12 +36,13 @@
   }
 
   &__action {
-    /*
     @include mobile {
       width: 100%;
-      .btn { width: 100%; justify-content: center; }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
-    */
   }
 
   &__grid {
@@ -77,7 +78,7 @@
   .services-card__cta-text {
     @include typography($font-family-base, $fw-regular, 16px, 24px);
     color: var(--color-text);
-    margin-bottom: 20px;
+    margin-bottom: convert-to-rem(20px);
   }
 
   .services-card__cta-btn {

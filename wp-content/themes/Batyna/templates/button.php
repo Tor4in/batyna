@@ -7,7 +7,7 @@ $text = $args['text'] ?? '';
 $href = $args['link'] ?? ($args['href'] ?? '#');
 $type = $args['type'] ?? 'primary';
 $class_extra = $args['class'] ?? '';
-$icon = $args['icon'] ?? true;
+$icon = isset($args['icon']) ? $args['icon'] : true;
 $target = $args['target'] ?? '_self';
 $custom_svg = $args['svg'] ?? null;
 $attr_raw = $args['attr'] ?? '';
@@ -19,7 +19,6 @@ if ($type === 'slider-nav') {
         <div class="slider-nav__prev">
             <span class="slider-nav__icon slider-nav__icon--prev"></span>
         </div>
-
         <div class="slider-nav__next">
             <span class="slider-nav__icon slider-nav__icon--next"></span>
         </div>

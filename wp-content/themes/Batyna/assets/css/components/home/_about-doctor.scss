@@ -3,7 +3,7 @@
 .doctor-card {
   display: flex;
   min-height: convert-to-rem(530px);
-  background: var(--gradient-doctor-card);
+  background: var(--gradient-bg-soft-blue);
   border: 1px solid var(--color-border);
   border-radius: convert-to-rem(12px);
   padding: convert-to-rem(40px) convert-to-rem(43px) convert-to-rem(16px)
@@ -102,7 +102,7 @@
 .doctor-bottom {
   margin-top: convert-to-rem(20px);
   min-height: convert-to-rem(422px);
-  background: var(--gradient-doctor-card);
+  background: var(--gradient-bg-soft-blue);
   border: 1px solid var(--color-border);
   border-radius: convert-to-rem(22px);
   padding-block: Clamp(23px, 45px);
@@ -151,7 +151,7 @@
   padding: Clamp(10px, 20px) convert-to-rem(24px);
   gap: convert-to-rem(5px);
   background-color: var(--color-glass-bg);
-  box-shadow: var(--shadow-glass-card);
+  box-shadow: var(--shadow-blue-card);
   backdrop-filter: blur(convert-to-rem(18px));
   @include gradient-border(convert-to-rem(12px), 2px, var(--gradient-silver));
 

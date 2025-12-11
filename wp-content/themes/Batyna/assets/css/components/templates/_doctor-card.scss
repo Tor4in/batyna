@@ -1,0 +1,395 @@
+.doctor-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: convert-to-rem(670px);
+  border-radius: convert-to-rem(8px);
+  box-shadow: var(--shadow-elevation-layered);
+}
+
+// Badge
+.doctor-card-badge {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  z-index: 3 !important;
+  width: fit-content !important;
+  height: auto !important;
+  min-height: convert-to-rem(45px) !important;
+  padding: convert-to-rem(10px) convert-to-rem(15px) !important;
+  border-radius: convert-to-rem(8px) !important;
+  background: var(--color-bg-metallic) !important;
+  backdrop-filter: blur(18px) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: convert-to-rem(4px) !important;
+  white-space: nowrap !important;
+
+  @include gradient-border(
+    convert-to-rem(8px),
+    2px,
+    var(--gradient-border-metallic)
+  );
+
+  box-shadow: var(--shadow-elevation-layered) !important;
+
+  &__number {
+    @include typography($font-family-base, $fw-semibold, 22px, 1.4);
+    color: var(--color-blue-accent) !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  &__label {
+    @include typography($font-family-base, $fw-regular, 12px, 1.4);
+    color: var(--color-blue-accent) !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+}
+
+// Main card with notch
+.doctor-card-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: convert-to-rem(414px);
+  border-radius: convert-to-rem(8px);
+  padding: convert-to-rem(10px);
+
+  // Notch parameters (Dimensions/Math stay local as they define the shape)
+  $notch-width: convert-to-rem(154px);
+  $notch-height: convert-to-rem(55px);
+  $radius: convert-to-rem(8px);
+  $bw: convert-to-rem(1.5px);
+
+  background: transparent;
+  backdrop-filter: none;
+
+  // Gradient border layer
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--gradient-border-metallic);
+    z-index: 0;
+    pointer-events: none;
+
+    clip-path: polygon(
+      0 #{$radius},
+      0 calc(#{$radius} * 0.55),
+      calc(#{$radius} * 0.1) calc(#{$radius} * 0.25),
+      calc(#{$radius} * 0.3) calc(#{$radius} * 0.1),
+      calc(#{$radius} * 0.55) 0,
+      #{$radius} 0,
+      calc(100% - #{$notch-width} - #{$radius}) 0,
+      calc(100% - #{$notch-width} - #{$radius} * 0.55) 0,
+      calc(100% - #{$notch-width} - #{$radius} * 0.3) calc(#{$radius} * 0.1),
+      calc(100% - #{$notch-width} - #{$radius} * 0.1) calc(#{$radius} * 0.25),
+      calc(100% - #{$notch-width}) calc(#{$radius} * 0.55),
+      calc(100% - #{$notch-width}) #{$radius},
+      calc(100% - #{$notch-width}) calc(#{$notch-height} - #{$radius}),
+      calc(100% - #{$notch-width}) calc(#{$notch-height} - #{$radius} * 0.55),
+      calc(100% - #{$notch-width} + #{$radius} * 0.1)
+        calc(#{$notch-height} - #{$radius} * 0.3),
+      calc(100% - #{$notch-width} + #{$radius} * 0.25)
+        calc(#{$notch-height} - #{$radius} * 0.1),
+      calc(100% - #{$notch-width} + #{$radius} * 0.55) #{$notch-height},
+      calc(100% - #{$notch-width} + #{$radius}) #{$notch-height},
+      calc(100% - #{$radius}) #{$notch-height},
+      calc(100% - #{$radius} * 0.55) #{$notch-height},
+      calc(100% - #{$radius} * 0.3) calc(#{$notch-height} + #{$radius} * 0.1),
+      calc(100% - #{$radius} * 0.1) calc(#{$notch-height} + #{$radius} * 0.25),
+      100% calc(#{$notch-height} + #{$radius} * 0.55),
+      100% calc(#{$notch-height} + #{$radius}),
+      100% calc(100% - #{$radius}),
+      100% calc(100% - #{$radius} * 0.55),
+      calc(100% - #{$radius} * 0.1) calc(100% - #{$radius} * 0.25),
+      calc(100% - #{$radius} * 0.3) calc(100% - #{$radius} * 0.1),
+      calc(100% - #{$radius} * 0.55) 100%,
+      calc(100% - #{$radius}) 100%,
+      #{$radius} 100%,
+      calc(#{$radius} * 0.55) 100%,
+      calc(#{$radius} * 0.3) calc(100% - #{$radius} * 0.1),
+      calc(#{$radius} * 0.1) calc(100% - #{$radius} * 0.25),
+      0 calc(100% - #{$radius} * 0.55),
+      0 calc(100% - #{$radius})
+    );
+  }
+
+  // Inner background
+  &::after {
+    content: "";
+    position: absolute;
+    inset: #{$bw};
+    border-radius: inherit;
+    background: var(--color-bg-metallic);
+    backdrop-filter: none;
+    z-index: 1;
+    pointer-events: none;
+
+    $r-in: calc(#{$radius} - #{$bw});
+    $nw-in: calc(#{$notch-width} - #{$bw});
+    $nh-in: calc(#{$notch-height} - #{$bw});
+
+    clip-path: polygon(
+      #{$bw} calc(#{$bw} + #{$r-in}),
+      #{$bw} calc(#{$bw} + #{$r-in} * 0.55),
+      calc(#{$bw} + #{$r-in} * 0.1) calc(#{$bw} + #{$r-in} * 0.25),
+      calc(#{$bw} + #{$r-in} * 0.3) calc(#{$bw} + #{$r-in} * 0.1),
+      calc(#{$bw} + #{$r-in} * 0.55) #{$bw},
+      calc(#{$bw} + #{$r-in}) #{$bw},
+      calc(100% - #{$bw} - #{$nw-in} - #{$r-in}) #{$bw},
+      calc(100% - #{$bw} - #{$nw-in} - #{$r-in} * 0.55) #{$bw},
+      calc(100% - #{$bw} - #{$nw-in} - #{$r-in} * 0.3)
+        calc(#{$bw} + #{$r-in} * 0.1),
+      calc(100% - #{$bw} - #{$nw-in} - #{$r-in} * 0.1)
+        calc(#{$bw} + #{$r-in} * 0.25),
+      calc(100% - #{$bw} - #{$nw-in}) calc(#{$bw} + #{$r-in} * 0.55),
+      calc(100% - #{$bw} - #{$nw-in}) calc(#{$bw} + #{$r-in}),
+      calc(100% - #{$bw} - #{$nw-in}) calc(#{$bw} + #{$nh-in} - #{$r-in}),
+      calc(100% - #{$bw} - #{$nw-in}) calc(#{$bw} + #{$nh-in} - #{$r-in} * 0.55),
+      calc(100% - #{$bw} - #{$nw-in} + #{$r-in} * 0.1)
+        calc(#{$bw} + #{$nh-in} - #{$r-in} * 0.3),
+      calc(100% - #{$bw} - #{$nw-in} + #{$r-in} * 0.25)
+        calc(#{$bw} + #{$nh-in} - #{$r-in} * 0.1),
+      calc(100% - #{$bw} - #{$nw-in} + #{$r-in} * 0.55) calc(#{$bw} + #{$nh-in}),
+      calc(100% - #{$bw} - #{$nw-in} + #{$r-in}) calc(#{$bw} + #{$nh-in}),
+      calc(100% - #{$bw} - #{$r-in}) calc(#{$bw} + #{$nh-in}),
+      calc(100% - #{$bw} - #{$r-in} * 0.55) calc(#{$bw} + #{$nh-in}),
+      calc(100% - #{$bw} - #{$r-in} * 0.3)
+        calc(#{$bw} + #{$nh-in} + #{$r-in} * 0.1),
+      calc(100% - #{$bw} - #{$r-in} * 0.1)
+        calc(#{$bw} + #{$nh-in} + #{$r-in} * 0.25),
+      calc(100% - #{$bw}) calc(#{$bw} + #{$nh-in} + #{$r-in} * 0.55),
+      calc(100% - #{$bw}) calc(#{$bw} + #{$nh-in} + #{$r-in}),
+      calc(100% - #{$bw}) calc(100% - #{$bw} - #{$r-in}),
+      calc(100% - #{$bw}) calc(100% - #{$bw} - #{$r-in} * 0.55),
+      calc(100% - #{$bw} - #{$r-in} * 0.1) calc(100% - #{$bw} - #{$r-in} * 0.25),
+      calc(100% - #{$bw} - #{$r-in} * 0.3) calc(100% - #{$bw} - #{$r-in} * 0.1),
+      calc(100% - #{$bw} - #{$r-in} * 0.55) calc(100% - #{$bw}),
+      calc(100% - #{$bw} - #{$r-in}) calc(100% - #{$bw}),
+      calc(#{$bw} + #{$r-in}) calc(100% - #{$bw}),
+      calc(#{$bw} + #{$r-in} * 0.55) calc(100% - #{$bw}),
+      calc(#{$bw} + #{$r-in} * 0.3) calc(100% - #{$bw} - #{$r-in} * 0.1),
+      calc(#{$bw} + #{$r-in} * 0.1) calc(100% - #{$bw} - #{$r-in} * 0.25),
+      #{$bw} calc(100% - #{$bw} - #{$r-in} * 0.55),
+      #{$bw} calc(100% - #{$bw} - #{$r-in})
+    );
+  }
+
+  // Content layer
+  &__grid,
+  &__image,
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: convert-to-rem(270px) 1fr;
+    gap: convert-to-rem(15px);
+    height: 100%;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    min-height: convert-to-rem(394px);
+    border-radius: convert-to-rem(6px);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-top: convert-to-rem(10px);
+    padding-right: convert-to-rem(5px);
+    padding-bottom: convert-to-rem(5px);
+  }
+
+  &__top {
+    width: 100%;
+  }
+
+  &__header {
+    margin-bottom: convert-to-rem(18px);
+  }
+
+  &__lastname {
+    @include typography($font-family-heading, $fw-regular, 24px, 1.2);
+    color: var(--color-black);
+    margin-bottom: convert-to-rem(2px);
+  }
+
+  &__firstname {
+    @include typography($font-family-heading, $fw-regular, 20px, 1.2);
+    color: var(--color-black);
+    white-space: nowrap;
+  }
+
+  &__divider {
+    width: 100%;
+    max-width: convert-to-rem(264px);
+    height: 1px;
+    background-color: var(--color-divider-blue-soft);
+    margin-bottom: convert-to-rem(14px);
+  }
+
+  &__spec {
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(6px);
+  }
+
+  &__spec-icon {
+    width: convert-to-rem(14px);
+    height: convert-to-rem(14px);
+    flex-shrink: 0;
+
+    img,
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__spec-text {
+    @include typography($font-family-base, $fw-regular, 15px, 1.2);
+    color: var(--color-black);
+  }
+
+  &__desc {
+    @include typography($font-family-base, $fw-regular, 15px, 1.4);
+    color: var(--color-black);
+    margin-top: auto;
+    margin-bottom: convert-to-rem(20px);
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(9px);
+    width: 100%;
+
+    .btn {
+      height: convert-to-rem(35px);
+      border-radius: convert-to-rem(100px);
+      padding: convert-to-rem(8px) convert-to-rem(16px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: normal;
+      text-align: center;
+      line-height: 1.2;
+      min-width: 0;
+    }
+
+    .btn-doc-book {
+      flex: 0 0 auto;
+      width: auto;
+      white-space: nowrap;
+    }
+
+    .btn-doc-more {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  // Mobile
+  @include mobile(991px) {
+    min-height: auto;
+
+    &__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    &__content {
+      order: 1;
+      padding: 0;
+      margin-bottom: convert-to-rem(20px);
+    }
+
+    &__image {
+      order: 2;
+      width: auto;
+      min-height: convert-to-rem(320px);
+      margin-inline: convert-to-rem(15px);
+      margin-bottom: convert-to-rem(10px);
+    }
+
+    &__header {
+      margin-bottom: 0;
+    }
+
+    &__lastname {
+      @include typography($font-family-heading, $fw-medium, 20px, 1.2);
+      margin-bottom: 0;
+    }
+
+    &__firstname {
+      @include typography($font-family-heading, $fw-regular, 16px, 1.2);
+      margin-bottom: convert-to-rem(18px);
+    }
+
+    &__divider {
+      margin-bottom: convert-to-rem(14px);
+    }
+
+    &__spec {
+      margin-bottom: convert-to-rem(22px);
+
+      &-text {
+        @include typography($font-family-base, $fw-regular, 14px, 1.2);
+      }
+    }
+
+    &__desc {
+      @include typography($font-family-base, $fw-regular, 14px, 20px);
+      margin-bottom: convert-to-rem(20px);
+      margin-top: 0;
+    }
+
+    &__actions {
+      flex-direction: row;
+      gap: convert-to-rem(10px);
+      flex-wrap: wrap;
+
+      .btn {
+        @include typography($font-family-base, $fw-regular, 12px, 1.2);
+        padding: convert-to-rem(8px) convert-to-rem(26px);
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .btn-doc-book,
+      .btn-doc-more {
+        width: auto;
+        flex: 0 0 auto;
+      }
+    }
+  }
+}
