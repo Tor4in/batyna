@@ -5,7 +5,7 @@
     @include typography($font-family-heading, $fw-medium, (32px, 42px), 1);
     text-align: center;
     color: var(--color-primary);
-    max-width: 350px;
+    max-width: convert-to-rem(350px);
     margin-inline: auto;
     margin-bottom: convert-to-rem(20px);
   }
@@ -25,7 +25,7 @@
   // Mobile slider
   &__slider-wrapper {
     display: block;
-    padding-bottom: 20px;
+    padding-bottom: convert-to-rem(20px);
 
     @include desktop {
       display: none;
@@ -41,7 +41,7 @@
   &__slide {
     height: auto;
     width: 80vw;
-    max-width: 320px;
+    max-width: convert-to-rem(320px);
   }
 
   // Slider navigation
@@ -60,31 +60,34 @@
     text-align: center;
     padding: convert-to-rem(20px) convert-to-rem(24px);
     background-color: var(--color-blue-faint);
-    border-radius: 12px;
-    box-shadow: var(--shadow-blue-card), inset 0 0 40px rgba(18, 34, 72, 0.05);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    @include gradient-border(12px, 2px, var(--gradient-silver));
+    border-radius: convert-to-rem(12px);
+
+    box-shadow: var(--shadow-blue-card), var(--shadow-inset-blue);
+
+    backdrop-filter: blur(convert-to-rem(18px));
+    -webkit-backdrop-filter: blur(convert-to-rem(18px));
+
+    @include gradient-border(convert-to-rem(12px), 2px, var(--gradient-silver));
 
     @include mobile {
-      height: 263px;
+      height: convert-to-rem(263px);
       justify-content: flex-start;
-      padding: 20px 25px;
+      padding: convert-to-rem(20px) convert-to-rem(25px);
       width: 100%;
     }
 
     @include desktop {
-      width: calc(33.333% - 14px);
+      width: calc(33.333% - #{convert-to-rem(14px)});
       height: auto;
 
       &:nth-child(1),
       &:nth-child(2) {
-        width: calc(48% - 10px);
+        width: calc(48% - #{convert-to-rem(10px)});
       }
 
       &:nth-child(6),
       &:nth-child(7) {
-        width: calc(42% - 10px);
+        width: calc(42% - #{convert-to-rem(10px)});
       }
     }
   }
@@ -105,7 +108,7 @@
     margin-bottom: convert-to-rem(24px);
 
     @include mobile {
-      margin-bottom: 10px;
+      margin-bottom: convert-to-rem(10px);
     }
   }
 
