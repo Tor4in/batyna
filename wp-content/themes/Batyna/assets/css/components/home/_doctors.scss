@@ -50,6 +50,7 @@
     letter-spacing: 0;
 
     @include mobile {
+      margin-left: convert-to-rem(28px);
       font-size: convert-to-rem(32px);
     }
   }
