@@ -1,5 +1,10 @@
 .advantages {
-  overflow: visible;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  @include desktop {
+    overflow: visible;
+  }
 
   &__title {
     @include typography($font-family-heading, $fw-medium, (32px, 42px), 1);
@@ -19,6 +24,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: convert-to-rem(20px);
+      margin-bottom: convert-to-rem(10px);
     }
   }
 
@@ -26,6 +32,8 @@
   &__slider-wrapper {
     display: block;
     padding-bottom: convert-to-rem(20px);
+    width: 100%;
+    overflow: visible;
 
     @include desktop {
       display: none;
@@ -40,8 +48,8 @@
   // Slider slide
   &__slide {
     height: auto;
-    width: 80vw;
-    max-width: convert-to-rem(320px);
+    width: convert-to-rem(300px);
+    max-width: 90%;
   }
 
   // Slider navigation
@@ -61,9 +69,7 @@
     padding: convert-to-rem(20px) convert-to-rem(24px);
     background-color: var(--color-blue-faint);
     border-radius: convert-to-rem(12px);
-
     box-shadow: var(--shadow-blue-card), var(--shadow-inset-blue);
-
     backdrop-filter: blur(convert-to-rem(18px));
     -webkit-backdrop-filter: blur(convert-to-rem(18px));
 
