@@ -14,6 +14,8 @@ Template Name: Home
     <?php get_template_part('sections/home/services'); ?>
     <?php get_template_part('sections/home/doctors'); ?>
     <?php get_template_part('templates/faq'); ?>
+    <?php get_template_part('templates/blog'); ?>
+
 
 </main>
 
