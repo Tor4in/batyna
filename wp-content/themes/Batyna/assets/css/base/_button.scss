@@ -44,6 +44,7 @@
   &__text {
     position: relative;
     z-index: 2;
+    transition: color 0.3s ease;
   }
 
   &__circle {
@@ -575,12 +576,12 @@
     }
 
     @include hover {
-      background: rgba(255, 255, 255, 0.4);
+      background: var(--color-white-40);
       transform: translate(-50%, -50%) scale(1.05);
     }
   }
 
-  // Read more toggle
+  // Read more toggle (for FAQ etc)
   &-read-more {
     width: 100%;
     height: convert-to-rem(26px);
@@ -602,6 +603,42 @@
     @include hover {
       background-color: var(--color-blue-accent);
       color: var(--color-white);
+    }
+  }
+
+  // Blog Card Read More Button
+  &-card-read {
+    width: 100%;
+    height: convert-to-rem(26px);
+    border-radius: convert-to-rem(6px);
+    padding: convert-to-rem(4px) convert-to-rem(16px);
+
+    // Normal State
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    justify-content: flex-start;
+
+    // Text Style
+    .btn__text {
+      @include typography($font-family-accent, $fw-medium, 12px, 18px);
+      letter-spacing: 0.25px;
+      color: var(--color-white-75);
+      transition: color 0.3s ease;
+    }
+
+    // Hide icon
+    .btn__circle {
+      display: none;
+    }
+
+    // Hover State
+    @include hover {
+      background-color: transparent;
+      border-color: var(--color-primary);
+
+      .btn__text {
+        color: var(--color-primary);
+      }
     }
   }
 }

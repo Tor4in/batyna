@@ -1,0 +1,150 @@
+.blog-section {
+  padding: convert-to-rem(44px) 0;
+  
+  // Header
+  &__header {
+    width: 100%;
+    min-height: convert-to-rem(61px);
+    background-color: var(--color-card-bg);
+    border-radius: convert-to-rem(12px);
+    padding: convert-to-rem(4px) convert-to-rem(18px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: convert-to-rem(10px);
+    margin-bottom: convert-to-rem(30px);
+
+    @include mobile {
+      flex-direction: row;
+      height: auto;
+      padding: convert-to-rem(15px);
+      gap: convert-to-rem(15px);
+      margin-bottom: convert-to-rem(14px);
+    }
+  }
+
+  &__title {
+    @include typography($font-family-heading, $fw-regular, 42px, 1);
+    letter-spacing: 0;
+    color: var(--color-black);
+
+    @include mobile {
+      @include typography($font-family-heading, $fw-regular, 32px, 1);
+      text-align: left;
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(7px);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__social-icon {
+    width: convert-to-rem(18px);
+    height: convert-to-rem(18px);
+    color: var(--color-blue-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg, path {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  }
+
+  &__social-text {
+    @include typography($font-family-base, $fw-regular, 18px, 1);
+    letter-spacing: 0;
+    color: var(--color-blue-accent);
+
+    @include mobile {
+      @include typography($font-family-base, $fw-regular, 14px, 1);
+    }
+  }
+
+  // Desktop grid
+  &__desktop {
+    display: block;
+    margin-bottom: convert-to-rem(40px);
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  // Mobile swiper
+  &__mobile {
+    display: none;
+    margin-bottom: convert-to-rem(20px);
+
+    @include mobile {
+      display: block;
+    }
+  }
+
+  // Grid layout
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: convert-to-rem(20px);
+    width: 100%;
+  }
+
+  // Swiper slide
+  .swiper-slide {
+    height: auto;
+    box-sizing: border-box; 
+  }
+
+  // Footer
+  &__footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    @include mobile {
+      justify-content: flex-start;
+    }
+  }
+}
+
+// Button transparent blog
+.btn-transparent-blog {
+  background-color: transparent;
+  border: 1px solid var(--color-border-alt);
+  padding: convert-to-rem(8px) convert-to-rem(26px);
+  height: convert-to-rem(35px);
+  border-radius: convert-to-rem(100px);
+  gap: convert-to-rem(10px);
+  @include typography($font-family-base, $fw-regular, 14px, 1);
+  color: var(--color-primary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  .btn__circle {
+    display: none;
+  }
+
+  @include hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

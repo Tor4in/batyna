@@ -1,0 +1,95 @@
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-card-bg);
+  border-radius: convert-to-rem(12px);
+  padding: convert-to-rem(10px);
+  height: 100%;
+  overflow: hidden;
+
+  // Image
+  &__image-link {
+    display: block;
+    width: 100%;
+    height: convert-to-rem(200px);
+    border-radius: convert-to-rem(12px);
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-bottom: convert-to-rem(16px);
+  }
+
+  &__image-wrapper {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Content
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  // Title
+  &__title {
+    margin-bottom: convert-to-rem(16px);
+
+    a {
+      @include typography($font-family-heading, $fw-semibold, 16px, 1);
+      letter-spacing: 0;
+      text-transform: capitalize;
+      color: var(--color-blue-accent);
+      text-decoration: none;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      @include mobile {
+        @include typography($font-family-base, $fw-regular, 16px, 1);
+      }
+    }
+  }
+
+  // Excerpt
+  &__excerpt {
+    @include typography($font-family-base, $fw-regular, 14px, 20px);
+    letter-spacing: 0;
+    text-transform: capitalize;
+    color: var(--color-brown-75);
+    margin-bottom: convert-to-rem(16px);
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    @include mobile {
+      @include typography($font-family-base, $fw-regular, 14px, 20px);
+    }
+  }
+
+  // Date container
+  &__meta {
+    width: 100%;
+    border: 1px solid var(--color-white);
+    border-radius: convert-to-rem(6px);
+    padding: convert-to-rem(4px) convert-to-rem(16px);
+    background-color: transparent;
+    margin-bottom: convert-to-rem(8px);
+  }
+
+  &__date {
+    @include typography($font-family-accent, $fw-regular, 12px, 18px);
+    letter-spacing: 0.25px;
+    color: rgba(62, 50, 50, 0.75);
+    display: block;
+    text-align: left;
+  }
+}
