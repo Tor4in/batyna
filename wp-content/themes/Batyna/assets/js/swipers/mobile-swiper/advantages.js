@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const advantagesSwiper = new Swiper(sliderSelector, {
     modules: [Navigation],
-    slidesPerView: "auto",
+    slidesPerView: "auto", 
     spaceBetween: 10,
     speed: 600,
     grabCursor: true,
@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     breakpoints: {
       992: {
+        enabled: false,
         allowTouchMove: false,
       },
     },
