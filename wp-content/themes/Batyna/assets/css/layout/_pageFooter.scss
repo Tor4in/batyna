@@ -1,1 +1,154 @@
-footer {}
+.footer {
+  background-color: var(--color-bg-light);
+  margin-top: var(--_section-gap);
+  padding-top: convert-to-rem(35px);
+  padding-bottom: convert-to-rem(31px);
+  width: 100%;
+
+  @include mobile {
+    padding-top: convert-to-rem(70px);
+    padding-bottom: convert-to-rem(70px);
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // Wrapper for menu, separator, and socials
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: convert-to-rem(17px);
+
+    @include mobile {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      margin-bottom: 0;
+    }
+  }
+
+  &__nav {
+    order: 1;
+
+    .footer-menu {
+      display: flex;
+      align-items: center;
+      gap: convert-to-rem(38px);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      @include mobile {
+        gap: convert-to-rem(22px);
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      li {
+        a {
+          @include typography($font-family-base, $fw-regular, 16px, 1);
+          color: var(--color-text-dark-grey);
+          text-decoration: none;
+          transition: color 0.3s ease;
+          white-space: nowrap;
+
+          @include hover {
+            color: var(--color-primary);
+          }
+        }
+      }
+    }
+  }
+
+  // Desktop only
+  &__vertical-separator {
+    order: 2;
+    width: 1px;
+    height: convert-to-rem(19px);
+    background-color: var(--color-text-dark-grey);
+    margin-inline: convert-to-rem(38px) convert-to-rem(31px);
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__socials {
+    order: 3;
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(10px);
+
+    @include mobile {
+      order: 3;
+      margin-bottom: convert-to-rem(30px);
+    }
+  }
+
+  &__horizontal-separator {
+    height: 1px;
+    order: 4;
+    width: convert-to-rem(898px);
+    background-color: var(--color-border-silver);
+    margin-top: convert-to-rem(13px);
+
+    @include mobile {
+      order: 2; // Positioned between menu and socials
+      width: convert-to-rem(172px);
+      max-width: convert-to-rem(264px);
+      background-color: var(--color-border-grey);
+      margin-top: convert-to-rem(31px);
+      margin-bottom: convert-to-rem(31px);
+    }
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: convert-to-rem(42.5px);
+
+    @include mobile {
+      margin-bottom: convert-to-rem(30px);
+    }
+
+    .custom-logo-link {
+      display: block;
+      line-height: 0;
+
+      img {
+        width: convert-to-rem(163px);
+        height: auto;
+        max-height: convert-to-rem(49px);
+        object-fit: contain;
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: convert-to-rem(46px);
+
+    @include mobile {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__link {
+    @include typography($font-family-base, $fw-regular, 16px, 1);
+    color: var(--color-text-dark-grey);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+
+    @include hover {
+      color: var(--color-primary);
+    }
+  }
+}
