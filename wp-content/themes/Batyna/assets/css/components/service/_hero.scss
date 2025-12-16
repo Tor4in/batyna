@@ -1,0 +1,106 @@
+@use "sass:math";
+
+.service-hero {
+  width: 100%;
+  padding-top: convert-to-rem(20px);
+
+  // Main card wrapper
+  &__card {
+    position: relative;
+    width: 100%;
+    min-height: convert-to-rem(461px);
+    border-radius: convert-to-rem(12px);
+    display: flex;
+    align-items: stretch;
+
+    @include mobile {
+      min-height: convert-to-rem(540px);
+      padding-top: convert-to-rem(30px);
+      padding-bottom: convert-to-rem(122px);
+      padding-left: convert-to-rem(10px);
+      padding-right: convert-to-rem(10px);
+    }
+  }
+
+  // Background image
+  &__bg-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  // Glass container
+  &__glass {
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    height: auto;
+    min-height: convert-to-rem(461px);
+    background: var(--color-glass-bg);
+    border: 1px solid var(--color-white);
+    border-radius: convert-to-rem(12px);
+    box-shadow: var(--shadow-hero-glass);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: convert-to-rem(20px) convert-to-rem(30px) convert-to-rem(50px) convert-to-rem(74px);
+
+    @include mobile {
+      width: 100%;
+      min-height: auto;
+      padding: convert-to-rem(30px) convert-to-rem(20px);
+      justify-content: flex-start;
+      gap: convert-to-rem(30px);
+    }
+  }
+
+  &__breadcrumbs {
+    width: 100%;
+  }
+
+  // Content typography
+  &__content {
+    width: 100%;
+    color: var(--color-white);
+
+    h1 {
+      @include typography($font-family-heading, $fw-regular, (32px, 42px), 1);
+      letter-spacing: 0;
+      color: var(--color-white);
+      margin-bottom: convert-to-rem(16px);
+
+      @include mobile {
+        font-size: convert-to-rem(24px);
+        line-height: convert-to-rem(24px);
+        font-weight: $fw-medium;
+      }
+    }
+
+    p {
+      @include typography($font-family-base, $fw-regular, 15px, math.div(22, 15));
+      letter-spacing: 0;
+      color: var(--color-white);
+      max-width: convert-to-rem(600px);
+
+      @include mobile {
+        font-size: convert-to-rem(14px);
+        line-height: convert-to-rem(22px);
+      }
+    }
+  }
+
+  &__action {
+  }
+}
