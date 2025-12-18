@@ -1,32 +1,35 @@
 <?php
 /**
  * Section: FAQ
+ * All fields are global and fetched from Site Options
  */
 
-// Section visibility toggle
-if (!get_field('faq_enabled')) {
+// Section visibility toggle (Global)
+if (!get_field('faq_enabled', 'option')) {
     return;
 }
 
-// Page fields
-$title_desktop = get_field('faq_title');
-$title_mobile = get_field('faq_title_mobile');
-$bg_image = get_field('faq_bg_image');
-$btn_data = get_field('faq_btn');
+// Global Options Fields
+$title_desktop = get_field('faq_title', 'option');
+$title_mobile = get_field('faq_title_mobile', 'option');
+$bg_image = get_field('faq_bg_image', 'option');
+$btn_data = get_field('faq_btn', 'option');
+$faq_list = get_field('faq_global_list', 'option');
 
 // Fallback: if mobile title is empty, use desktop title
 if (empty($title_mobile)) {
     $title_mobile = $title_desktop;
 }
 
-// Global Options
+// Global Contact Info
 $phone_1 = get_field('phone_1', 'option');
 $phone_2 = get_field('phone_2', 'option');
 $map_link_data = get_field('contact_map_link', 'option');
-$faq_list = get_field('faq_global_list', 'option');
 
 // Icons assets
-$btn_icon_svg = file_get_contents(get_template_directory() . '/assets/images/svg/user-white.svg');
+$btn_icon_svg = file_exists(get_template_directory() . '/assets/images/svg/user-white.svg') 
+    ? file_get_contents(get_template_directory() . '/assets/images/svg/user-white.svg') 
+    : '';
 $icon_phone_url = get_template_directory_uri() . '/assets/images/svg/phone-white.svg';
 $icon_map_url = get_template_directory_uri() . '/assets/images/svg/location-white.svg';
 
@@ -48,7 +51,6 @@ if (!$bg_image) {
         <div class="faq-section__layout">
 
             <div class="faq-section__left-col">
-
                 <div class="faq-section__header-group">
                     <?php if ($title_desktop): ?>
                         <h2 class="faq-section__title faq-section__title--desktop">
@@ -62,18 +64,18 @@ if (!$bg_image) {
                         </h2>
                     <?php endif; ?>
 
-                    <?php if ($btn_data): ?>
+                    <?php if ($btn_data && !empty($btn_data['text'])): ?>
                         <div class="faq-section__action">
                             <?php
                             get_template_part(
                                 'templates/button',
                                 null,
                                 [
-                                    'text' => $btn_data['text'] ?? 'Задати питання',
-                                    'link' => $btn_data['link'] ?? '#contact',
+                                    'text' => $btn_data['text'],
+                                    'link' => $btn_data['link'] ?: '#contact',
                                     'type' => 'secondary-gradient',
                                     'icon' => true,
-                                    'svg' => $btn_icon_svg,
+                                    'svg'  => $btn_icon_svg,
                                 ]
                             );
                             ?>
@@ -108,8 +110,7 @@ if (!$bg_image) {
                                 <img src="<?php echo esc_url($icon_map_url); ?>" alt="Location" loading="lazy">
                             </div>
                             <div class="faq-contact-row__text">
-                                <a href="<?php echo esc_url($map_link_data['url'] ?? '#'); ?>" target="_blank"
-                                    rel="noopener">
+                                <a href="<?php echo esc_url($map_link_data['url'] ?: '#'); ?>" target="_blank" rel="noopener">
                                     <?php echo esc_html($map_link_data['text']); ?>
                                 </a>
                             </div>
@@ -121,7 +122,7 @@ if (!$bg_image) {
             <div class="faq-section__right-col">
                 <?php if ($faq_list): ?>
                     <div class="faq-list">
-                        <?php foreach ($faq_list as $index => $item): ?>
+                        <?php foreach ($faq_list as $item): ?>
                             <?php if (!empty($item['question'])): ?>
                                 <div class="faq-item js-faq-item">
                                     <div class="faq-item__header js-faq-trigger">

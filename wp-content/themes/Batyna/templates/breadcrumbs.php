@@ -3,7 +3,7 @@
  * Breadcrumbs Template
  */
 
-// Skip breadcrumbs on front page
+// Skip on front page
 if (is_front_page()) {
     return;
 }
@@ -39,26 +39,54 @@ if (is_category()) {
     ];
 }
 
-// Single post
-if (is_single() && !is_attachment()) {
-    // Add category breadcrumb if needed
+// Blog archive
+if (is_post_type_archive('blog')) {
+    $crumbs[] = [
+        'title' => 'Блог',
+        'url' => get_post_type_archive_link('blog'),
+    ];
 }
-
-// Current page (last item)
-$current_title = '';
-if (is_page() || is_single()) {
-    $current_title = get_the_title();
-} elseif (is_archive()) {
+// Standard archive
+elseif (is_archive()) {
     $current_title = get_the_archive_title();
-} elseif (is_search()) {
-    $current_title = 'Результати пошуку: ' . get_search_query();
-} elseif (is_404()) {
-    $current_title = 'Сторінка не знайдена';
-}
-
-if ($current_title) {
+    $current_title = preg_replace('/^[\w\s]+:\s/', '', $current_title);
+    
     $crumbs[] = [
         'title' => $current_title,
+        'url' => null,
+    ];
+}
+
+// Single post
+if (is_single() && !is_attachment()) {
+    if (get_post_type() === 'blog') {
+        $crumbs[] = [
+            'title' => 'Блог',
+            'url' => get_post_type_archive_link('blog'),
+        ];
+    }
+}
+
+// Search results
+if (is_search()) {
+    $crumbs[] = [
+        'title' => 'Результати пошуку: ' . get_search_query(),
+        'url' => null,
+    ];
+}
+
+// 404 page
+if (is_404()) {
+    $crumbs[] = [
+        'title' => 'Сторінка не знайдена',
+        'url' => null,
+    ];
+}
+
+// Current page
+if (is_page() || (is_single() && !is_attachment())) {
+    $crumbs[] = [
+        'title' => get_the_title(),
         'url' => null,
     ];
 }
@@ -68,7 +96,7 @@ if ($current_title) {
     <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
         <?php foreach ($crumbs as $index => $crumb): ?>
             <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <?php if ($crumb['url']): ?>
+                <?php if (!empty($crumb['url']) && $index !== count($crumbs) - 1): ?>
                     <a href="<?php echo esc_url($crumb['url']); ?>" class="breadcrumbs__link" itemprop="item">
                         <span itemprop="name"><?php echo esc_html($crumb['title']); ?></span>
                     </a>

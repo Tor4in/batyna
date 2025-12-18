@@ -4,6 +4,7 @@
  */
 
 $text = $args['text'] ?? '';
+$text_collapse = $args['text_collapse'] ?? 'Згорнути';
 $href = $args['link'] ?? ($args['href'] ?? '#');
 $type = $args['type'] ?? 'primary';
 $class_extra = $args['class'] ?? '';
@@ -27,7 +28,7 @@ if ($type === 'slider-nav') {
     return;
 }
 
-// Read More (Toggle) variant
+// Read More (Toggle) variant - Keep for other uses
 if ($type === 'read-more') {
     $text_active = $args['text_active'] ?? 'Згорнути';
     ?>
@@ -41,45 +42,37 @@ if ($type === 'read-more') {
 
 // Base classes
 $classes = 'btn btn-' . $type;
-
-if (!$icon && $type !== 'social' && $type !== 'icon' && $type !== 'play') {
+if (!$icon && !in_array($type, ['social', 'icon', 'play'])) {
     $classes .= ' btn--no-icon';
 }
-
 if (!empty($class_extra)) {
     $classes .= ' ' . $class_extra;
 }
 
-// Determine tag and main attributes
 $tag = 'a';
 $attrs_str = '';
 
-if ($type === 'submit' || $type === 'button' || $type === 'play') {
+if (in_array($type, ['submit', 'button', 'play', 'transparent-blog'])) {
     $tag = 'button';
     $attrs_str = 'type="button"';
-    if ($type === 'submit') {
-        $attrs_str = 'type="submit"';
-    }
 } else {
     $attrs_str = 'href="' . esc_url($href) . '" target="' . esc_attr($target) . '"';
 }
 
-// Append custom attributes if any
 if (!empty($attr_raw)) {
     $attrs_str .= ' ' . $attr_raw;
 }
 ?>
 
-<<?php echo $tag; ?> class="<?php echo esc_attr($classes); ?>" <?php echo $attrs_str; ?>>
-    <?php if ($text): ?>
-        <span class="btn__text"><?php echo esc_html($text); ?></span>
-    <?php endif; ?>
+<<?php echo $tag; ?> class="<?php echo esc_attr($classes); ?>" <?php echo $attrs_str; ?> 
+    data-text-load="<?php echo esc_attr($text); ?>" 
+    data-text-collapse="<?php echo esc_attr($text_collapse); ?>">
+    
+    <span class="btn__text"><?php echo esc_html($text); ?></span>
 
     <?php if ($icon || $type === 'play'): ?>
         <span class="btn__circle">
-            <?php if ($custom_svg): ?>
-                <?php echo $custom_svg; ?>
-            <?php endif; ?>
+            <?php if ($custom_svg): echo $custom_svg; endif; ?>
         </span>
     <?php endif; ?>
 </<?php echo $tag; ?>>
