@@ -20,6 +20,7 @@
 }
 
 body {
+  overflow-x: hidden;
   background-color: var(--color-background);
   font-family: $font-family-base;
   color: var(--color-text, #242424);
