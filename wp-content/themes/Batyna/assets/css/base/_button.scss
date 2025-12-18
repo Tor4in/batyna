@@ -37,9 +37,15 @@
   border-radius: convert-to-rem(100px);
   cursor: pointer;
   text-decoration: none;
+  border: none;
+  background: none;
   @include typography($font-family-base, $fw-regular, 16px, 1);
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;
+
+  & > * {
+    pointer-events: none;
+  }
 
   &__text {
     position: relative;
@@ -69,6 +75,8 @@
     }
   }
 
+  // Modifiers
+
   // Transparent
   &-transparent {
     background-color: transparent;
@@ -90,23 +98,45 @@
     }
   }
 
-  // Primary
+  &-transparent-blog {
+    background-color: transparent;
+    border: 1px solid var(--color-border-alt);
+    padding: convert-to-rem(8px) convert-to-rem(26px);
+    height: convert-to-rem(35px);
+    border-radius: convert-to-rem(100px);
+    gap: convert-to-rem(10px);
+    @include typography($font-family-base, $fw-regular, 14px, 1);
+    color: var(--color-primary);
+
+    @include hover {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      border-color: var(--color-primary);
+    }
+
+    &.loading {
+      cursor: wait;
+      opacity: 0.6;
+    }
+
+    .btn__circle {
+      display: none;
+    }
+  }
+
   &-primary {
     background-color: var(--color-primary);
     border: 1px solid var(--color-primary);
     padding: convert-to-rem(8px) convert-to-rem(8px) convert-to-rem(7px)
       convert-to-rem(20px);
-
     &,
     &:visited {
       color: var(--color-white);
     }
-
     @include btn-shine;
 
     .btn__circle {
       background-color: var(--color-white);
-
       &::before {
         background-color: var(--color-primary);
       }
@@ -122,18 +152,15 @@
     }
   }
 
-  // Secondary
   &-secondary {
     background-color: transparent;
     border: 1px solid var(--color-white);
     padding: convert-to-rem(8px) convert-to-rem(8px) convert-to-rem(7px)
       convert-to-rem(20px);
-
     &,
     &:visited {
       color: var(--color-white);
     }
-
     &.btn--no-icon {
       padding: convert-to-rem(12px) convert-to-rem(26px);
       justify-content: center;
@@ -141,7 +168,6 @@
 
     .btn__circle {
       background-color: var(--color-white);
-
       &::before {
         background-color: var(--color-primary);
       }
@@ -151,28 +177,23 @@
       background-color: var(--color-white-70);
       border-color: var(--color-white);
       color: var(--color-primary);
-
       .btn__circle {
         background-color: var(--color-primary);
-
         &::before {
           background-color: var(--color-white);
         }
       }
     }
-
     &:active {
       transform: scale(0.98);
     }
   }
 
-  // Secondary gradient
   &-secondary-gradient {
     background-color: transparent;
     border: 1px solid var(--color-white);
     padding: convert-to-rem(8px) convert-to-rem(8px) convert-to-rem(7px)
       convert-to-rem(20px);
-
     &,
     &:visited {
       color: var(--color-white);
@@ -181,7 +202,6 @@
     .btn__circle {
       background: var(--gradient-btn-radial);
       box-shadow: var(--shadow-btn-circle);
-
       &::before {
         background-color: var(--color-white);
       }
@@ -191,29 +211,24 @@
       background-color: var(--color-white-70);
       border-color: var(--color-white);
       color: var(--color-primary);
-
       .btn__circle {
         background: var(--color-white);
         box-shadow: none;
-
         &::before {
           background-color: var(--color-primary);
         }
       }
     }
-
     &:active {
       transform: scale(0.98);
     }
   }
 
-  // Tertiary
   &-tertiary {
     background-color: transparent;
     border: 1px solid var(--color-black);
     padding: convert-to-rem(8px) convert-to-rem(8px) convert-to-rem(8px)
       convert-to-rem(20px);
-
     &,
     &:visited {
       color: var(--color-black);
@@ -221,7 +236,6 @@
 
     .btn__circle {
       background-color: var(--color-black);
-
       &::before {
         background-color: var(--color-white);
       }
@@ -231,27 +245,22 @@
       background-color: var(--color-primary);
       border-color: var(--color-primary);
       color: var(--color-white);
-
       .btn__circle {
         background-color: var(--color-white);
-
         &::before {
           background-color: var(--color-primary);
         }
       }
     }
-
     &:active {
       transform: scale(0.98);
     }
   }
 
-  // Quaternary
   &-quaternary {
     background-color: var(--color-primary);
     border: 1px solid var(--color-primary);
     padding: convert-to-rem(10px) convert-to-rem(26px);
-
     &,
     &:visited {
       color: var(--color-white);
@@ -259,7 +268,6 @@
 
     .btn__circle {
       background-color: var(--color-white);
-
       &::before {
         background-color: var(--color-primary);
       }
@@ -269,22 +277,18 @@
       background-color: var(--color-white-70);
       color: var(--color-primary);
       border-color: var(--color-border-grey);
-
       .btn__circle {
         background-color: var(--color-primary);
-
         &::before {
           background-color: var(--color-white);
         }
       }
     }
-
     &:active {
       transform: scale(0.98);
     }
   }
 
-  // Social
   &-social {
     width: convert-to-rem(30px);
     height: convert-to-rem(30px);
@@ -293,7 +297,6 @@
     background-color: transparent;
     border: 1px solid var(--color-white);
     justify-content: center;
-
     &,
     &:visited {
       color: var(--color-white);
@@ -302,7 +305,6 @@
     .btn__text {
       display: none;
     }
-
     .btn__circle {
       width: 100%;
       height: 100%;
@@ -310,7 +312,6 @@
       border-radius: 50%;
       box-shadow: none;
       background: none;
-
       &::before {
         width: convert-to-rem(16px);
         height: convert-to-rem(16px);
@@ -319,70 +320,41 @@
     }
 
     &.is-facebook .btn__circle::before {
-      @include svg-mask(
-        "../images/svg/facebook.svg",
-        convert-to-rem(16px),
-        convert-to-rem(16px)
-      );
+      @include svg-mask("../images/svg/facebook.svg", 16px, 16px);
     }
-
     &.is-instagram .btn__circle::before {
-      @include svg-mask(
-        "../images/svg/instagram.svg",
-        convert-to-rem(16px),
-        convert-to-rem(16px)
-      );
+      @include svg-mask("../images/svg/instagram.svg", 16px, 16px);
     }
-
     &.is-tiktok .btn__circle::before {
-      @include svg-mask(
-        "../images/svg/tiktok.svg",
-        convert-to-rem(16px),
-        convert-to-rem(16px)
-      );
+      @include svg-mask("../images/svg/tiktok.svg", 16px, 16px);
     }
-
     &.is-telegram .btn__circle::before {
-      @include svg-mask(
-        "../images/svg/telegram.svg",
-        convert-to-rem(16px),
-        convert-to-rem(16px)
-      );
+      @include svg-mask("../images/svg/telegram.svg", 16px, 16px);
     }
-
     &.is-youtube .btn__circle::before {
-      @include svg-mask(
-        "../images/svg/youtube.svg",
-        convert-to-rem(16px),
-        convert-to-rem(16px)
-      );
+      @include svg-mask("../images/svg/youtube.svg", 16px, 16px);
     }
 
     @include hover {
       background-color: var(--color-white);
       border-color: var(--color-white);
-
       .btn__circle::before {
         background-color: var(--color-primary);
       }
     }
-
     &:active {
       transform: scale(0.95);
     }
 
     &--dark {
       border-color: var(--color-primary);
-
       &,
       &:visited {
         color: var(--color-primary);
       }
-
       @include hover {
         background-color: var(--color-primary);
         border-color: var(--color-primary);
-
         .btn__circle::before {
           background-color: var(--color-white);
         }
@@ -390,7 +362,6 @@
     }
   }
 
-  // Phone outline
   &-phone-outline {
     width: convert-to-rem(30px);
     height: convert-to-rem(30px);
@@ -401,16 +372,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     &,
     &:visited {
       color: var(--color-black);
     }
-
     .btn__text {
       display: none;
     }
-
     .btn__circle {
       width: 100%;
       height: 100%;
@@ -419,17 +387,11 @@
       justify-content: center;
       background: none;
       box-shadow: none;
-
       &::before {
-        @include svg-mask(
-          "../images/svg/phone-outline.svg",
-          convert-to-rem(13px),
-          convert-to-rem(13px)
-        );
+        @include svg-mask("../images/svg/phone-outline.svg", 13px, 13px);
         background-color: currentColor;
       }
     }
-
     @include hover {
       background-color: var(--color-primary);
       border-color: var(--color-primary);
@@ -437,7 +399,6 @@
     }
   }
 
-  // Burger
   &-burger {
     width: convert-to-rem(36px);
     height: convert-to-rem(36px);
@@ -450,16 +411,13 @@
     justify-content: center;
     transition: background-color 0.3s ease, border-color 0.3s ease,
       color 0.3s ease;
-
     &,
     &:visited {
       color: var(--color-white);
     }
-
     .btn__text {
       display: none;
     }
-
     .btn__circle {
       width: 100%;
       height: 100%;
@@ -469,46 +427,31 @@
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       background: none;
       box-shadow: none;
-
       &::before {
-        @include svg-mask(
-          "../images/svg/burger.svg",
-          convert-to-rem(25px),
-          convert-to-rem(10px)
-        );
+        @include svg-mask("../images/svg/burger.svg", 25px, 10px);
         background-color: currentColor;
         transition: background-color 0.3s ease;
       }
     }
-
     &.is-active {
       background-color: var(--color-primary);
       border-color: var(--color-primary);
       color: var(--color-white);
-
       .btn__circle {
         transform: rotate(180deg);
-
         &::before {
-          @include svg-mask(
-            "../images/svg/close.svg",
-            convert-to-rem(14px),
-            convert-to-rem(14px)
-          );
+          @include svg-mask("../images/svg/close.svg", 14px, 14px);
           background-color: var(--color-white);
         }
       }
     }
-
     @include hover {
       background-color: var(--color-white);
       color: var(--color-primary);
-
       &.is-active {
         background-color: var(--color-white);
         border-color: var(--color-white);
         color: var(--color-primary);
-
         .btn__circle::before {
           background-color: var(--color-primary);
         }
@@ -516,7 +459,6 @@
     }
   }
 
-  // Play button
   &-play {
     position: absolute;
     top: 50%;
@@ -538,7 +480,6 @@
     box-shadow: var(--shadow-blue-card);
     border: convert-to-rem(2px) solid transparent;
     background-clip: padding-box;
-
     &::after {
       content: "";
       position: absolute;
@@ -553,7 +494,6 @@
       pointer-events: none;
       z-index: 1;
     }
-
     .btn__circle {
       width: convert-to-rem(24px);
       height: convert-to-rem(26px);
@@ -561,11 +501,9 @@
       border-radius: 0;
       background: none;
       box-shadow: none;
-
       &::before {
         display: none;
       }
-
       img,
       svg {
         width: 100%;
@@ -574,14 +512,12 @@
         display: block;
       }
     }
-
     @include hover {
       background: var(--color-white-40);
       transform: translate(-50%, -50%) scale(1.05);
     }
   }
 
-  // Read more toggle (for FAQ etc)
   &-read-more {
     width: 100%;
     height: convert-to-rem(26px);
@@ -595,47 +531,35 @@
     gap: 0;
     @include typography($font-family-base, $fw-regular, 12px, 18px, 0.25px);
     color: var(--color-white);
-
     .btn__circle {
       display: none;
     }
-
     @include hover {
       background-color: var(--color-blue-accent);
       color: var(--color-white);
     }
   }
 
-  // Blog Card Read More Button
   &-card-read {
     width: 100%;
     height: convert-to-rem(26px);
     border-radius: convert-to-rem(6px);
     padding: convert-to-rem(4px) convert-to-rem(16px);
-
-    // Normal State
     background-color: var(--color-primary);
     border: 1px solid var(--color-primary);
     justify-content: flex-start;
-
-    // Text Style
     .btn__text {
       @include typography($font-family-accent, $fw-medium, 12px, 18px);
       letter-spacing: 0.25px;
       color: var(--color-white-75);
       transition: color 0.3s ease;
     }
-
-    // Hide icon
     .btn__circle {
       display: none;
     }
-
-    // Hover State
     @include hover {
       background-color: transparent;
       border-color: var(--color-primary);
-
       .btn__text {
         color: var(--color-primary);
       }
@@ -650,29 +574,17 @@
   height: convert-to-rem(32px);
   z-index: 5;
   user-select: none;
-
   &__icon {
     display: block;
     background-color: currentColor;
     transition: background-color 0.3s ease;
-
     &--prev {
-      @include svg-mask(
-        "../images/svg/arrow-left.svg",
-        convert-to-rem(24px),
-        convert-to-rem(24px)
-      );
+      @include svg-mask("../images/svg/arrow-left.svg", 24px, 24px);
     }
-
     &--next {
-      @include svg-mask(
-        "../images/svg/arrow-right.svg",
-        convert-to-rem(24px),
-        convert-to-rem(24px)
-      );
+      @include svg-mask("../images/svg/arrow-right.svg", 24px, 24px);
     }
   }
-
   &__prev {
     position: absolute;
     inset: 0;
@@ -692,7 +604,6 @@
     transition: opacity 0.3s;
     z-index: 1;
     color: var(--color-primary);
-
     &::before {
       content: "";
       position: absolute;
@@ -706,14 +617,12 @@
       mask-composite: exclude;
       pointer-events: none;
     }
-
     &.swiper-button-disabled {
       opacity: 0.5;
       cursor: default;
       pointer-events: none;
     }
   }
-
   &__next {
     position: absolute;
     right: -1px;
@@ -730,11 +639,9 @@
     z-index: 2;
     transition: background-color 0.3s;
     color: var(--color-white);
-
     @include hover {
       background-color: var(--color-blue-accent);
     }
-
     &.swiper-button-disabled {
       background-color: var(--color-grey-medium);
       border-color: transparent;
