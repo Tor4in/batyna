@@ -1,4 +1,5 @@
 import "swiper/css";
 import "./mobile-swiper/advantages";
 import "./doctors";
-import "./mobile-swiper/blog"
+import "./service-indications";
+import "./mobile-swiper/blog";

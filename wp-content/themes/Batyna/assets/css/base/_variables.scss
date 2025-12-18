@@ -10,14 +10,14 @@ $fw-bold: 700;
 
 // Design tokens
 :root {
-  // --- Spacing ---
+  // Spacing
   --_section-gap: #{Clamp(3.75rem, 7.5rem)};
   --_section-offset: #{Clamp(0.5rem, 2.5rem)};
   --header-height: 80px;
 
-  // --- COLORS ---
+  // Colors
 
-  // 1. Brand Colors & Accents
+  // Brand colors & accents
   --color-primary: #122248;
   --color-primary-faint: #1222481a;
   --color-secondary: #5d7ca9;
@@ -26,15 +26,16 @@ $fw-bold: 700;
   --color-blue-faint: rgba(6, 47, 105, 0.1);
   --color-divider-blue-soft: rgba(43, 92, 142, 0.3);
 
-  // 2. Backgrounds & Neutral Colors
+  // Backgrounds & neutrals
   --color-background: #f7f8ff;
   --color-bg-light: #e8eaf3;
   --color-bg-metallic: #d6d7dd;
   --color-card-bg: #e8ebf3;
   --color-white: #fff;
   --color-black: #000000;
+  --color-bg-muted-light: rgba(227, 228, 233, 0.3);
 
-  // 3. Text & Form Colors
+  // Text & form colors
   --color-text: #242424;
   --color-heading: #000000;
   --color-text-muted: rgba(62, 50, 50, 0.75);
@@ -42,7 +43,8 @@ $fw-bold: 700;
   --color-brown-75: #3e3232bf;
   --color-input-placeholder: rgba(0, 0, 0, 0.3);
   --color-text-dark-grey: #2d2e2e;
-  // 4. Borders
+
+  // Borders
   --color-border: #e0e0e0;
   --color-border-alt: #a5b3c2;
   --color-border-light: #cccccc;
@@ -52,20 +54,17 @@ $fw-bold: 700;
   --color-grey-medium: #b6b0b0;
   --color-grey-dusty: #a0a0a0;
   --color-border-silver: #c1c1c1;
+  --color-border-soft: #d9d9d9;
+  --color-border-light-grey: #f2f2f2;
 
-  // 5. Overlays & Glass Effects
+  // Overlays & glass effects
   --color-overlay-dark: rgba(0, 0, 0, 0.3);
 
   // Glass backgrounds
   --color-glass-bg: rgba(255, 255, 255, 0.3);
-  --color-glass-metallic: rgba(
-    211,
-    212,
-    216,
-    0.567
-  ); // New generic wrapper color
+  --color-glass-metallic: rgba(211, 212, 216, 0.567);
 
-  // White Opacities (Sorted high to low)
+  // White opacities
   --color-white-80: rgba(255, 255, 255, 0.8);
   --color-white-75: rgba(255, 255, 255, 0.75);
   --color-white-70: rgba(255, 255, 255, 0.7);
@@ -76,7 +75,7 @@ $fw-bold: 700;
   --color-white-10: rgba(255, 255, 255, 0.1);
   --color-white-05: rgba(255, 255, 255, 0.05);
 
-  // --- GRADIENTS ---
+  // Gradients
   --gradient-silver: linear-gradient(
     180deg,
     #f2f2f2 60.58%,
@@ -117,7 +116,7 @@ $fw-bold: 700;
     #acacac 99.99%
   );
 
-  // --- SHADOWS ---
+  // Shadows
   --shadow-header: 0px 17px 38px 0px rgba(0, 0, 0, 0.1),
     0px 69px 69px 0px rgba(0, 0, 0, 0.09),
     0px 156px 94px 0px rgba(0, 0, 0, 0.05),
@@ -151,4 +150,18 @@ $fw-bold: 700;
   --shadow-card-hover: 0px 20px 30px 0px rgba(0, 0, 0, 0.12);
   --shadow-inset-blue: inset 0 0 40px rgba(18, 34, 72, 0.05);
   --shadow-btn-glow: 0px 0px 14px 0px rgba(0, 0, 0, 0.12);
+
+  // Service section colors
+  --gradient-service-menu: linear-gradient(
+    97.78deg,
+    #edeef6 7.08%,
+    #cfd9e3 86.83%
+  );
+  --color-border-nav-separator: #a6a6a6;
+  --color-divider-content: #959595;
+  --color-border-list-vertical: #d9dae1;
+  --color-counter-text: #000000;
+
+  // Additional shadows
+  --shadow-inset-circle: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
