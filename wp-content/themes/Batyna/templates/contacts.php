@@ -27,7 +27,7 @@ $icon_loc_url = get_template_directory_uri() . '/assets/images/svg/location-whit
 $icon_clock_url = get_template_directory_uri() . '/assets/images/svg/clock.svg';
 ?>
 
-<section class="contacts" id="contacts">
+<section class="contacts" id="contact">
     <div class="container">
         <div class="contacts__wrapper">
 
