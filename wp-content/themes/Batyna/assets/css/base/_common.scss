@@ -1,9 +1,19 @@
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
   *,
   *::before,
   *::after {
     transition: none !important;
+    animation: none !important;
   }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height, convert-to-rem(100px)); 
 }
 
 :where(section, header, footer) {
