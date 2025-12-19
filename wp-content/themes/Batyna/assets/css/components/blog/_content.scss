@@ -1,0 +1,204 @@
+.blog-content {
+  padding-bottom: convert-to-rem(100px);
+
+  // Top row
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: convert-to-rem(24px);
+    margin-bottom: convert-to-rem(24px);
+    padding-top: convert-to-rem(24px);
+    padding-inline: convert-to-rem(300px);
+
+    @media (max-width: 1440px) {
+       padding-inline: convert-to-rem(100px);
+    }
+
+    @include mobile {
+      padding-inline: 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      display: none; 
+    }
+  }
+
+  // Breadcrumbs
+  &__breadcrumbs {
+    .breadcrumbs {
+      &__item {
+        color: #8D8D8D;
+        a {
+           transition: color 0.3s ease;
+           &:hover { color: var(--color-black); }
+        }
+      }
+      &__item:not(:last-child)::after {
+        background-color: #8D8D8D; 
+      }
+    }
+  }
+
+  &__share {
+    // Social share styles
+  }
+
+  // Main content
+  &__text {
+    width: 100%;
+    padding-inline: convert-to-rem(300px);
+
+    @media (max-width: 1440px) {
+       padding-inline: convert-to-rem(100px);
+    }
+
+    @include mobile {
+      padding-inline: 0;
+    }
+
+    // Paragraphs
+    p {
+      @include typography($font-family-base, $fw-regular, (16px, 18px), 1.6);
+      color: var(--color-black, #000000);
+      margin-bottom: convert-to-rem(24px);
+    }
+
+    // Headings
+    h1 {
+      @include typography($font-family-heading, $fw-medium, (32px, 52px), 1.2);
+      color: var(--color-heading);
+      margin-top: convert-to-rem(40px);
+      margin-bottom: convert-to-rem(24px);
+    }
+
+    h2 {
+      @include typography($font-family-heading, $fw-semibold, 32px, 1.3);
+      color: var(--color-heading);
+      margin-top: convert-to-rem(36px);
+      margin-bottom: convert-to-rem(20px);
+
+      @include desktop {
+        font-weight: $fw-bold;
+      }
+    }
+
+    h3 {
+      @include typography($font-family-heading, $fw-medium, (20px, 22px), 1.4);
+      color: var(--color-heading);
+      margin-top: convert-to-rem(32px);
+      margin-bottom: convert-to-rem(16px);
+    }
+
+    h4 {
+      @include typography($font-family-heading, $fw-bold, 18px, 1.5);
+      color: var(--color-heading);
+      margin-top: convert-to-rem(24px);
+      margin-bottom: convert-to-rem(16px);
+    }
+
+    h5, h6 {
+      @include typography($font-family-heading, $fw-bold, 16px, 1.5);
+      color: var(--color-heading);
+      margin-top: convert-to-rem(24px);
+      margin-bottom: convert-to-rem(16px);
+    }
+
+    // Lists
+    ul, ol {
+      margin-bottom: convert-to-rem(24px);
+      padding-left: convert-to-rem(20px);
+      
+      li {
+        @include typography($font-family-base, $fw-regular, (16px, 18px), 1.6);
+        margin-bottom: convert-to-rem(8px);
+      }
+    }
+
+    strong, b {
+      font-family: $font-family-heading;
+      font-weight: 700;
+    }
+
+    a {
+      color: var(--color-blue-accent);
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: convert-to-rem(12px);
+        margin-block: convert-to-rem(24px);
+    }
+
+    // Image captions
+    .wp-caption {
+      max-width: 100%; 
+      height: auto;
+      margin-bottom: convert-to-rem(32px);
+      
+      &.aligncenter {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: convert-to-rem(12px);
+        margin: 0;
+      }
+
+      .wp-caption-text {
+        position: relative;
+        font-family: 'Open Sans', sans-serif;
+        font-size: convert-to-rem(14px);
+        color: var(--color-black);
+        line-height: 1.5;
+        text-align: left;
+        margin-top: convert-to-rem(16px);
+        padding-left: convert-to-rem(10px);
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: convert-to-rem(2px);
+          height: convert-to-rem(21px);
+          background-color: var(--color-black);
+        }
+      }
+    }
+
+    // Blockquotes
+    blockquote {
+      margin: convert-to-rem(32px) 0;
+      padding-left: convert-to-rem(20px);
+      position: relative;
+
+      p {
+        font-family: $font-family-heading;
+        font-style: italic;
+        @include typography($font-family-heading, $fw-medium, (18px, 20px), 1.6);
+        color: var(--color-black);
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: convert-to-rem(2px);
+        height: 100%;
+        background-color: var(--color-black);
+      }
+    }
+  }
+}
