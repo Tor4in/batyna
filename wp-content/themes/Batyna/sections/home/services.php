@@ -32,7 +32,7 @@ $services_query = new WP_Query([
 ?>
 
 
-<section class="services">
+<section id="services" class="services">
     <div class="container">
 
         <div class="services__header">

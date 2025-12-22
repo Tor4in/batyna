@@ -201,3 +201,12 @@ add_action('wp_enqueue_scripts', function () {
 
 // Вимкнути стандартні стилі галереї WordPress, щоб прибрати текст #gallery-1...
 add_filter( 'use_default_gallery_style', '__return_false' );
+
+function remove_active_class_from_anchors($classes, $item) {
+    // Якщо URL містить #, видаляємо класи активності
+    if (strpos($item->url, '#') !== false) {
+        $classes = array_diff($classes, array('current-menu-item', 'current_page_item', 'current_page_parent'));
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'remove_active_class_from_anchors', 10, 2);
