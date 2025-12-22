@@ -1,0 +1,41 @@
+.privacy-policy-breadcrumbs {
+  width: 100%;
+  padding-top: convert-to-rem(30px);
+  padding-bottom: convert-to-rem(20px);
+
+  &__wrapper {
+    .breadcrumbs {
+      &__item {
+        color: var(--color-text-grey-form);
+        transition: color 0.3s ease;
+
+        a {
+          transition: color 0.3s ease;
+
+          @include hover {
+            color: var(--color-black);
+          }
+        }
+
+        &:not(:last-child)::after {
+          background-color: var(--color-text-grey-form);
+        }
+      }
+
+      @include mobile {
+        background-color: var(--color-bg-breadcrumbs);
+        border-radius: 0;
+        width: fit-content;
+        padding: convert-to-rem(4px) convert-to-rem(12px);
+
+        &__item {
+          color: var(--color-white) !important;
+
+          &:not(:last-child)::after {
+            background-color: var(--color-white) !important;
+          }
+        }
+      }
+    }
+  }
+}
