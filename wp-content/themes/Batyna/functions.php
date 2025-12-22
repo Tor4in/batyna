@@ -1,4 +1,6 @@
 <?php
+// ВИПРАВЛЕННЯ ПОМИЛКИ ob_end_flush
+remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
 add_action('wp_enqueue_scripts', 'enqueue_scripts_and_styles');
 add_action('after_setup_theme', 'theme_setup');
 add_filter('upload_mimes', 'svg_upload_allow');
@@ -14,8 +16,7 @@ require_once get_template_directory() . '/includes/ajax-handlers.php';
 
 function enqueue_scripts_and_styles()
 {
-
-    wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/main.bundle.css'); // R
+    wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/main.bundle.css');
 
     wp_enqueue_script('main-js', get_template_directory_uri() . '/dist/js/main.bundle.js', array(), null, true);
     wp_localize_script('main-js', 'params', array(
@@ -58,6 +59,39 @@ add_action('acf/init', function () {
     }
 });
 
+/**
+ * Helper: Get Picture (WebP + Lazy Load)
+ * Required by hero.php
+ */
+function get_picture($filename, $class = '', $alt = '', $lazy = true)
+{
+    $path = get_template_directory_uri() . '/assets/images/';
+    
+    // Separate name and extension
+    $parts = pathinfo($filename);
+    $name = $parts['filename'];
+    $ext  = isset($parts['extension']) ? $parts['extension'] : 'jpg';
+
+    $is_svg = strtolower($ext) === 'svg';
+    $loading = $lazy ? 'loading="lazy"' : 'loading="eager"';
+    
+    // Build classes
+    $class_attr = $class ? 'class="' . esc_attr($class) . '"' : '';
+    
+    // Return SVG immediately if that's the type
+    if ($is_svg) {
+        return "<img src='{$path}{$filename}' {$class_attr} alt='" . esc_attr($alt) . "' {$loading}>";
+    }
+
+    // Output picture tag
+    $html = "<picture {$class_attr}>";
+    $html .= "<source srcset='{$path}{$name}.webp' type='image/webp'>";
+    $html .= "<img src='{$path}{$filename}' alt='" . esc_attr($alt) . "' {$loading}>";
+    $html .= "</picture>";
+
+    return $html;
+}
+
 function get_image($name)
 {
     echo get_template_directory_uri() . "/assets/images/" . $name;
@@ -67,15 +101,22 @@ function getPhrase($string_key, $group = 'Main Page')
 {
     global $strings_to_translate, $strings_to_translate_privacy;
 
+    // Safety check to ensure arrays exist
+    if (!isset($strings_to_translate)) $strings_to_translate = [];
+    if (!isset($strings_to_translate_privacy)) $strings_to_translate_privacy = [];
+
     $strings = $group === 'Privacy Policy' ? $strings_to_translate_privacy : $strings_to_translate;
 
-    if (function_exists('pll__')) {
-        echo pll__($strings[$string_key], $group);
-    } else {
-        echo $strings[$string_key];
+    if (isset($strings[$string_key])) {
+        if (function_exists('pll__')) {
+            echo pll__($strings[$string_key]); // Simplified call
+        } else {
+            echo $strings[$string_key];
+        }
     }
 }
 
+// Translations Data
 $strings_to_translate = array(
     '' => '',
 );
@@ -84,27 +125,27 @@ $strings_to_translate_privacy = array(
     '' => '',
 );
 
-if (function_exists('pll_register_string')) {
-    foreach ($strings_to_translate as $string_key => $string_value) {
-        pll_register_string($string_key, $string_value, 'Main Page');
-    }
+// Register Strings (Wrapped in 'init' to fix Textdomain Warning)
+add_action('init', function() use ($strings_to_translate, $strings_to_translate_privacy) {
+    if (function_exists('pll_register_string')) {
+        foreach ($strings_to_translate as $string_key => $string_value) {
+            if(!empty($string_key)) pll_register_string($string_key, $string_value, 'Main Page');
+        }
 
-    foreach ($strings_to_translate_privacy as $string_key => $string_value) {
-        pll_register_string($string_key, $string_value, 'Privacy Policy');
+        foreach ($strings_to_translate_privacy as $string_key => $string_value) {
+            if(!empty($string_key)) pll_register_string($string_key, $string_value, 'Privacy Policy');
+        }
     }
-}
-
+});
 
 function svg_upload_allow($mimes)
 {
     $mimes['svg'] = 'image/svg+xml';
-
     return $mimes;
 }
 
 function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
 {
-
     if (version_compare($GLOBALS['wp_version'], '5.1.0', '>=')) {
         $dosvg = in_array($real_mime, ['image/svg', 'image/svg+xml']);
     } else {
@@ -112,9 +153,7 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
     }
 
     if ($dosvg) {
-
         if (current_user_can('manage_options')) {
-
             $data['ext'] = 'svg';
             $data['type'] = 'image/svg+xml';
         } else {
@@ -122,13 +161,11 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
             $data['type'] = false;
         }
     }
-
     return $data;
 }
 
 function getHomePageID()
 {
-
     // Отримуємо ID стандартної головної сторінки
     $default_home_id = get_option('page_on_front');
 
@@ -152,15 +189,15 @@ function getHomePageID()
 /*
  * Вимкнення Gutenberg (блочного редактора)
  */
-// Вимикає редактор блоків для постів та сторінок
 add_filter('use_block_editor_for_post', '__return_false');
-
-// Вимикає редактор блоків для віджетів (повертає старі віджети)
 add_filter('use_widgets_block_editor', '__return_false');
 
-// Опціонально: Вимкнути завантаження стилів Gutenberg на фронтенді (щоб сайт вантажився швидше)
 add_action('wp_enqueue_scripts', function () {
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');
     wp_dequeue_style('global-styles');
 }, 100);
+
+
+// Вимкнути стандартні стилі галереї WordPress, щоб прибрати текст #gallery-1...
+add_filter( 'use_default_gallery_style', '__return_false' );
