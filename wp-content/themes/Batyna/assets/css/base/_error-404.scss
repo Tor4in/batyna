@@ -1,0 +1,120 @@
+.error-404-page {
+  position: relative;
+  width: 100%;
+
+  height: 100vh;
+  height: 100dvh;
+  min-height: convert-to-rem(600px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-primary);
+
+  @include mobile {
+    min-height: auto;
+    height: 100dvh;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: convert-to-rem(50px);
+    position: relative;
+    z-index: 2;
+    padding-inline: convert-to-rem(20px);
+    width: 100%;
+
+    @include mobile {
+      gap: convert-to-rem(60px);
+    }
+  }
+
+  &__text-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: convert-to-rem(30px);
+    color: var(--color-white);
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      width: fit-content;
+      margin-inline: auto;
+      gap: 0;
+    }
+
+    h1 {
+      @include typography($font-family-heading, $fw-medium, 140px, 1);
+      margin: 0;
+      padding: 0;
+      color: inherit;
+      white-space: nowrap;
+
+      @include mobile {
+        font-size: convert-to-rem(90px);
+        font-weight: 500;
+        line-height: 1;
+      }
+    }
+
+    p {
+      @include typography($font-family-heading, $fw-regular, 42px, 1);
+      text-transform: uppercase;
+      margin: 0;
+      color: inherit;
+      text-align: left;
+      padding-top: convert-to-rem(14px);
+
+      @include mobile {
+        font-size: convert-to-rem(22px);
+        font-weight: 400;
+        line-height: convert-to-rem(52px);
+        padding-top: 0;
+        text-align: left;
+      }
+    }
+  }
+
+  &__action {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .btn-404 {
+      min-width: convert-to-rem(280px);
+      border: 1px solid var(--color-white-40);
+
+      @include mobile {
+        width: auto;
+        min-width: convert-to-rem(200px);
+      }
+    }
+  }
+}
