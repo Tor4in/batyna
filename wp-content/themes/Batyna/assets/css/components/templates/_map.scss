@@ -1,0 +1,27 @@
+.map-section {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+  &__wrapper {
+    width: 100%;
+    // Map height, partially hidden by contacts
+    height: convert-to-rem(525px);
+    border-radius: convert-to-rem(12px);
+    overflow: hidden;
+    background-color: var(--color-bg-light);
+    box-shadow: var(--shadow-card-sm);
+
+    @include mobile {
+      height: convert-to-rem(450px);
+    }
+  }
+
+  &__iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+  }
+}

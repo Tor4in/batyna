@@ -1,0 +1,26 @@
+.contacts-breadcrumbs {
+  width: 100%;
+  padding-top: convert-to-rem(30px);
+  padding-bottom: convert-to-rem(20px);
+
+  &__wrapper {
+    .breadcrumbs {
+      &__item {
+        color: var(--color-text-grey-form); 
+        transition: color 0.3s ease;
+
+        a {
+          transition: color 0.3s ease;
+          
+          @include hover {
+            color: var(--color-black);
+          }
+        }
+
+        &:not(:last-child)::after {
+          background-color: var(--color-text-grey-form); 
+        }
+      }
+    }
+  }
+}
