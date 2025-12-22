@@ -1,8 +1,17 @@
 header {
-  padding: 20px 0;
+  padding: convert-to-rem(20px) 0;
   width: 100%;
   position: relative; 
   z-index: 100;
+
+  // OVERLAY MODIFIER
+  &.header--overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+  }
 
   .main-nav {
     display: flex;
@@ -14,13 +23,13 @@ header {
       line-height: 0;
 
       img {
-        width: 163px;
-        height: 49px;
+        width: convert-to-rem(163px);
+        height: convert-to-rem(49px);
         object-fit: contain;
 
         @include mobile {
-          width: 131px;
-          height: 39px;
+          width: convert-to-rem(131px);
+          height: convert-to-rem(39px);
         }
       }
     }
@@ -29,14 +38,14 @@ header {
     .header__right {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: convert-to-rem(10px);
       width: fit-content;
-      padding: 6px 24px;
-      border-radius: 100px;
+      padding: convert-to-rem(6px) convert-to-rem(24px);
+      border-radius: convert-to-rem(100px);
       background: var(--color-glass-bg);
-      backdrop-filter: blur(18px);
+      backdrop-filter: blur(8px);
       box-shadow: var(--shadow-header);
-      @include gradient-border(100px, 2px, var(--gradient-header-border));
+      @include gradient-border(convert-to-rem(100px), 2px, var(--gradient-header-border));
 
       @include mobile {
         display: none;
@@ -45,7 +54,7 @@ header {
       .nav-list {
         display: flex;
         align-items: center;
-        gap: 30px;
+        gap: convert-to-rem(30px);
 
         li {
           a {
@@ -65,16 +74,16 @@ header {
             a {
               display: flex;
               align-items: center;
-              gap: 4px;
+              gap: convert-to-rem(4px);
               background-color: var(--color-white);
-              border-radius: 100px;
-              padding: 4px 10px;
+              border-radius: convert-to-rem(100px);
+              padding: convert-to-rem(4px) convert-to-rem(10px);
 
               &::before {
                 content: "";
                 display: block;
-                width: 8px;
-                height: 8px;
+                width: convert-to-rem(8px);
+                height: convert-to-rem(8px);
                 background-color: var(--color-black);
                 border-radius: 50%;
                 flex-shrink: 0;
@@ -97,14 +106,14 @@ header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        min-width: 123px;
-        padding: 5px 11px;
-        gap: 10px;
-        border-radius: 100px;
+        min-width: convert-to-rem(123px);
+        padding: convert-to-rem(5px) convert-to-rem(11px);
+        gap: convert-to-rem(10px);
+        border-radius: convert-to-rem(100px);
         background: var(--color-glass-bg);
         backdrop-filter: blur(18px);
         box-shadow: var(--shadow-header);
-        @include gradient-border(100px, 2px, var(--gradient-header-border));
+        @include gradient-border(convert-to-rem(100px), 2px, var(--gradient-header-border));
       }
     }
   }
