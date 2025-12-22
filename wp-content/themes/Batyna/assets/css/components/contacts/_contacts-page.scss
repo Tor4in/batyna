@@ -1,0 +1,32 @@
+.page-contacts-layout {
+  // Disable global grid
+  display: block !important;
+  gap: 0 !important;
+
+  width: 100%;
+  position: relative;
+  padding-bottom: 0;
+
+  // Contacts section
+  & > .contacts {
+    position: relative;
+    z-index: 5;
+    margin-bottom: 0;
+    pointer-events: none;
+
+    .contacts__wrapper {
+      pointer-events: auto;
+    }
+  }
+
+  // Map section
+  & > .map-section {
+    position: relative;
+    z-index: 1;
+    margin-top: convert-to-rem(-180px);
+
+    @include mobile {
+      margin-top: convert-to-rem(-120px);
+    }
+  }
+}
