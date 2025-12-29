@@ -79,6 +79,10 @@
     </div>
 </footer>
 
+<button class="btn-scroll-top" aria-label="Scroll to top">
+    <span class="btn-scroll-top__icon"></span>
+</button>
+
 <?php wp_footer(); ?>
 </body>
 </html>
