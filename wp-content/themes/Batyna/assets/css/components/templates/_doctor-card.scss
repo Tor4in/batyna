@@ -214,7 +214,8 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-top: convert-to-rem(10px);
+    // Збільшив з 10px до 26px, щоб опустити текст
+    padding-top: convert-to-rem(26px);
     padding-right: convert-to-rem(5px);
     padding-bottom: convert-to-rem(5px);
   }
@@ -328,7 +329,11 @@
 
     &__content {
       order: 1;
-      padding: 0;
+      // Додав відступ і для мобільної версії, бо там теж може перекривати
+      padding-top: convert-to-rem(20px);
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 0;
       margin-bottom: convert-to-rem(20px);
     }
 

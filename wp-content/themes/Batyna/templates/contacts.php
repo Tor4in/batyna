@@ -89,16 +89,21 @@ $icon_clock_url = get_template_directory_uri() . '/assets/images/svg/clock.svg';
                                     </div>
                                 <?php endif; ?>
 
-                                <?php if ($address): ?>
+                                <?php if ($address): 
+                                    $address_clean = strip_tags($address);
+                                    $maps_link = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($address_clean);
+                                ?>
                                     <div class="contacts__item">
                                         <div class="contacts__icon-circle">
                                             <div class="contacts__icon is-location"
                                                 style="--icon-url: url('<?php echo esc_url($icon_loc_url); ?>')"></div>
                                         </div>
                                         <div class="contacts__text-col">
-                                            <div class="contacts__link is-centered">
-                                                <?php echo wp_kses_post($address); ?>
-                                            </div>
+                                            <a href="<?php echo esc_url($maps_link); ?>" target="_blank" class="contacts__link is-centered">
+                                                <?php 
+                                                echo wp_kses_post($address); 
+                                                ?>
+                                            </a>
                                         </div>
                                     </div>
                                 <?php endif; ?>

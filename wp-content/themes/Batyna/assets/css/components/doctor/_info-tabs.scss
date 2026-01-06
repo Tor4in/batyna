@@ -148,7 +148,7 @@
       margin-bottom: convert-to-rem(16px);
     }
     p {
-      @include typography($font-family-heading, $fw-semibold, 15px, 1.5);
+      @include typography($font-family-heading, $fw-regular, 15px, 1.5);
       color: var(--color-black);
       margin-bottom: convert-to-rem(16px);
       &:last-child { margin-bottom: 0; }
@@ -161,7 +161,7 @@
         position: relative;
         padding-left: convert-to-rem(15px);
         margin-bottom: convert-to-rem(8px);
-        @include typography($font-family-heading, $fw-semibold, 15px, 1.5);
+        @include typography($font-family-heading, $fw-regular, 15px, 1.5);
         color: var(--color-black);
         display: flex;
         align-items: flex-start;

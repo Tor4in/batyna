@@ -1,214 +1,15 @@
 @use "sass:math";
 
-// Navigation
-.service-nav {
-  width: 100%;
-  background: var(--gradient-service-menu);
-  border: 1px solid var(--color-border);
-
-  @include desktop {
-    min-height: convert-to-rem(364px);
-    height: auto;
-    border-radius: convert-to-rem(22px);
-    padding: convert-to-rem(46px) convert-to-rem(22px) convert-to-rem(30px);
-    display: flex;
-    flex-direction: column;
-  }
-
-  @include mobile {
-    min-height: auto;
-    padding: convert-to-rem(6px);
-    border-radius: convert-to-rem(12px);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin: 0;
-  }
-
-  &__wrapper {
-    position: relative;
-    width: 100%;
-  }
-
-  &__list {
-    position: relative;
-    display: flex;
-    width: 100%;
-    @include desktop {
-      flex-direction: column;
-    }
-    @include mobile {
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: nowrap;
-    }
-  }
-
-  &__indicator {
-    position: absolute;
-    background-color: var(--color-white-50);
-    border-radius: convert-to-rem(12px);
-    z-index: 1;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    @include mobile {
-      background-color: rgba(255, 255, 255, 0.5);
-    }
-  }
-
-  &__item {
-    width: 100%;
-    position: relative;
-    z-index: 2;
-
-    @include desktop {
-      margin-bottom: convert-to-rem(10px);
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: convert-to-rem(-6px);
-        height: 1px;
-        background-color: var(--color-border-nav-separator);
-        z-index: -1;
-      }
-      &:last-child {
-        margin-bottom: 0;
-        &::after {
-          display: none;
-        }
-      }
-    }
-
-    @include mobile {
-      width: auto;
-      display: flex;
-      align-items: center;
-      margin-bottom: 0;
-
-      &:not(:last-child)::after {
-        content: "";
-        display: block;
-        height: convert-to-rem(22px);
-        width: 1px;
-        background-color: #f2f2f2;
-        margin-left: convert-to-rem(6px);
-        margin-right: convert-to-rem(6px);
-        position: relative;
-        z-index: 10;
-      }
-    }
-  }
-
-  &__link {
-    display: block;
-    width: 100%;
-    text-align: center;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    @include typography($font-family-base, $fw-regular, (12px, 18px), 22px);
-    color: var(--color-black);
-
-    @include desktop {
-      padding: convert-to-rem(12px);
-    }
-    @include mobile {
-      padding: convert-to-rem(10px) convert-to-rem(12px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: convert-to-rem(12px);
-      white-space: nowrap;
-      height: 100%;
-    }
-
-    &.is-active {
-      @include typography($font-family-base, $fw-semibold, (12px, 18px), 22px);
-      color: var(--color-black);
-      background: transparent;
-    }
-
-    @include hover {
-      opacity: 0.7;
-    }
-  }
-
-  &__text {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    white-space: nowrap;
-
-    &::after {
-      content: attr(title);
-      font-weight: $fw-semibold;
-      height: 0;
-      overflow: hidden;
-      visibility: hidden;
-      @include desktop {
-        display: block;
-      }
-      @include mobile {
-        content: none;
-      }
-    }
-  }
-
-  &__action {
-    display: flex;
-    justify-content: center;
-    @include desktop {
-      margin-top: auto;
-      padding-top: convert-to-rem(20px);
-    }
-    @include mobile {
-      display: none;
-    }
-  }
-
-  &__btn {
-    border-color: var(--color-primary) !important;
-    .btn__text {
-      @include typography($font-family-base, $fw-regular, 16px, 1);
-      color: var(--color-black);
-    }
-  }
-}
-
 // Service info section
 .service-info {
   width: 100%;
   padding-bottom: var(--_section-gap);
 
-  &__grid {
-    display: grid;
-    grid-template-columns: convert-to-rem(320px) 1fr;
-    gap: convert-to-rem(30px);
-    align-items: start;
-    @include mobile {
-      grid-template-columns: 1fr;
-      gap: convert-to-rem(30px);
-    }
-  }
-
-  &__sidebar {
-    @include desktop {
-      position: sticky;
-      top: calc(var(--header-height) + 20px);
-      z-index: 10;
-    }
-    width: 100%;
-  }
-
+  // Центрування контенту
   &__content {
-    min-width: 0;
     width: 100%;
+    max-width: convert-to-rem(1055px);
+    margin: 0 auto;
   }
 
   &__block {
@@ -298,7 +99,7 @@
   &__divider {
     width: 100%;
     max-width: convert-to-rem(777px);
-    height: 1px;
+    height: 2px;
     min-height: 1px;
     border: none;
     background-color: var(--color-divider-content);

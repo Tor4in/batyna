@@ -1,31 +1,31 @@
 <footer class="footer">
     <div class="container">
         <div class="footer__inner">
-            
-            <?php 
+
+            <?php
             $privacy_page_id = get_field('privacy_policy_page', 'option');
             $dev_credit = get_field('developer_credit', 'option');
-            
+
             $socials = [
-                'facebook'  => get_field('social_facebook', 'option'),
+                'facebook' => get_field('social_facebook', 'option'),
                 'instagram' => get_field('social_instagram', 'option'),
-                'tiktok'    => get_field('social_tiktok', 'option'),
-                'telegram'  => get_field('social_telegram', 'option'),
-                'youtube'   => get_field('social_youtube', 'option'),
+                'tiktok' => get_field('social_tiktok', 'option'),
+                'telegram' => get_field('social_telegram', 'option'),
+                'youtube' => get_field('social_youtube', 'option'),
             ];
             ?>
 
             <div class="footer__top">
-                
+
                 <div class="footer__nav">
-                    <?php 
+                    <?php
                     wp_nav_menu(array(
                         'theme_location' => 'menu-footer',
-                        'container'      => false,
-                        'menu_class'     => 'footer-menu',
-                        'fallback_cb'    => '__return_false',
-                        'depth'          => 1,
-                    )); 
+                        'container' => false,
+                        'menu_class' => 'footer-menu',
+                        'fallback_cb' => '__return_false',
+                        'depth' => 1,
+                    ));
                     ?>
                 </div>
 
@@ -34,14 +34,14 @@
                 <div class="footer__socials">
                     <?php foreach ($socials as $network => $link): ?>
                         <?php if ($link): ?>
-                            <?php 
+                            <?php
                             get_template_part('templates/button', null, [
-                                'type'   => 'social',
-                                'text'   => ucfirst($network),
-                                'link'   => $link,
+                                'type' => 'social',
+                                'text' => ucfirst($network),
+                                'link' => $link,
                                 'target' => '_blank',
-                                'class'  => 'btn-social--dark is-' . $network
-                            ]); 
+                                'class' => 'btn-social--dark is-' . $network
+                            ]);
                             ?>
                         <?php endif; ?>
                     <?php endforeach; ?>
@@ -52,7 +52,7 @@
             </div>
 
             <div class="footer__logo">
-                <?php 
+                <?php
                 if (has_custom_logo()) {
                     the_custom_logo();
                 } else {
@@ -64,7 +64,7 @@
             <div class="footer__bottom">
                 <?php if ($privacy_page_id): ?>
                     <a href="<?php echo esc_url(get_permalink($privacy_page_id)); ?>" class="footer__link">
-                        Privacy Policy
+                        <?php echo esc_html(get_the_title($privacy_page_id)); ?>
                     </a>
                 <?php endif; ?>
 
@@ -85,4 +85,5 @@
 
 <?php wp_footer(); ?>
 </body>
+
 </html>
