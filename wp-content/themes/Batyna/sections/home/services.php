@@ -25,7 +25,7 @@ $cta_bg = get_template_directory_uri() . '/assets/images/service-cta-bg.webp';
 // Services query
 $services_query = new WP_Query([
     'post_type' => 'services',
-    'posts_per_page' => 7,
+    'posts_per_page' => 8,
     'orderby' => 'date',
     'order' => 'ASC',
 ]);
@@ -74,6 +74,7 @@ $services_query = new WP_Query([
             endif;
             ?>
 
+            <?php if ($services_query->post_count < 8): ?>
             <div class="services-card services-card--cta">
                 <img src="<?php echo esc_url($cta_bg); ?>" alt="" class="services-card__bg" loading="lazy">
 
@@ -101,6 +102,7 @@ $services_query = new WP_Query([
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
 
         </div>
     </div>
